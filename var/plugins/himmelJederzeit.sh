@@ -1,30 +1,40 @@
-output="autotimer/"
-tmp="tmp/"
-log="../himmelJederzeit.log"
+
 FilmName="Filme.sorted"
 SerienName="Serien.sorted"
 WeltName="Welt.sorted"
+
+log="/tmp/himmelJederzeit.log"
+configdir="/var/tuxbox/config/"
+
+jederzeitdir=${configdir}"jederzeit/"
+output=$jederzeitdir"autotimer/"
+tmp=${jederzeitdir}"tmp/"
+$anytime=$jederzeitdir"anytime"
+
 filmFile=${output}${FilmName}
 serienFile=${output}${SerienName} 
 weltFile=${output}${WeltName}
-. ./himmelJederzeit.cfg
+
+lib=$jederzeitdir"/lib"
+
+. $configdir/himmelJederzeit.cfg
 
 getHTML() {
   
   if [ -f anytime ]; then
     rm anytime
   fi
-  wget http://www.sky.de/anytime -U "Mozilla/5.0 (Windows NT 5.1; rv:10.0.2) Gecko/20100101 Firefox/10.0.2" --header="Accept-Language: en-us,en;q=0.5" --header="Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8" --header="Connection: keep-alive"
+  wget -O $anytime http://www.sky.de/anytime -U "Mozilla/5.0 (Windows NT 5.1; rv:10.0.2) Gecko/20100101 Firefox/10.0.2" --header="Accept-Language: en-us,en;q=0.5" --header="Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8" --header="Connection: keep-alive"
   echo "Hole Daten von Sky: '" $# "'" >> $log
 }
 
 setUp() {
-  mkdir -p tmp autotimer
+  mkdir -p $tmp $output
 }
 
 cleanUp () {
   files="${tmp}1 ${tmp}Filme ${tmp}Welt ${tmp}Serien ${filmFile}  ${serienFile} ${weltFile} "
-  dirs="tmp autotimer"
+  dirs=$tmp $autotimer
   
   for do in $files
   do
@@ -44,22 +54,22 @@ cleanUp () {
 }
 
 awkInfos() {
-  if [ ! -f anytime ]; then
+  if [ ! -f $anytime ]; then
     echo "anytime ist nicht vorhanden!"
     exit 1 
   fi
   
   echo "parse anytime auf Infos" >> $log
-  cat anytime | 
-  awk -f lib/first.awk |
-  awk -f lib/second.awk 
+  cat $anytime | 
+  awk -f $lib/first.awk |
+  awk -f $lib/second.awk 
 
   sort -n  Filme > ${filmFile}
  # sort -n  Serien > ${serienFile}
  # sort -n  Welt > ${weltFile}
 
   cat ${filmFile} |
-  awk -f lib/third.awk > tmp_file
+  awk -f $lib/third.awk > tmp_file
   
   mv tmp_file ${filmFile}
   
@@ -67,9 +77,9 @@ awkInfos() {
  # echo "Anzahl : " `wc -l Serien` >> $log
  # echo "Anzahl : " `wc -l Welt` >> $log
   
-  mkdir -p tmp
+  mkdir -p $tmp
  # mv Filme Serien Welt tmp 
-  mv Filme tmp 
+  mv Filme $tmp 
   
 }
 #
