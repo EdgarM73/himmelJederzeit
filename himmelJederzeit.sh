@@ -14,7 +14,7 @@ getHTML() {
   if [ -f anytime ]; then
     rm anytime
   fi
-  wget --append-output=$log www.sky.de/anytime
+  wget http://www.sky.de/anytime -U "Mozilla/5.0 (Windows NT 5.1; rv:10.0.2) Gecko/20100101 Firefox/10.0.2" --header="Accept-Language: en-us,en;q=0.5" --header="Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8" --header="Connection: keep-alive"
   echo "Hole Daten von Sky: '" $# "'" >> $log
 }
 
@@ -89,46 +89,57 @@ awkInfos() {
 removeUnwanted() {
   
   if [[ $Adventure == 1 ]]; then
+    echo "Abenteuer sind nicht erwünscht, werden gelöscht" >> $log
     grep -v "Adventure" $filmFile > tmp_file
     mv tmp_file $filmFile
   fi
   
   if [[ $Action == 1 ]]; then
+    echo "Action ist nicht erwünscht, werden gelöscht" >> $log
     grep -v "Action" $filmFile > tmp_file
     mv tmp_file $filmFile
   fi
   
   if [[ $Drama == 1 ]]; then
+    echo "Drama sind nicht erwünscht, werden gelöscht" >> $log
     grep -v "Drama" $filmFile > tmp_file
     mv tmp_file $filmFile
   fi
   
   if [[ $Family == 1 ]]; then
+  
+    echo "Familienfilme sind nicht erwünscht, werden gelöscht" >> $log
     grep -v "Family" $filmFile > tmp_file
     mv tmp_file $filmFile
   fi
   
-  if [[ $Horror == 1 ]]; then
+  if [[ $Horror == 1 ]]; then 
+    echo "Horror ist nicht erwünscht, werden gelöscht" >> $log
     grep -v "Horror" $filmFile > tmp_file
     mv tmp_file $filmFile
   fi
   
   if [[ $Comedy == 1 ]]; then
+  
+    echo "Comedy ist nicht erwünscht, werden gelöscht" >> $log
     grep -v "Comedy" $filmFile > tmp_file
     mv tmp_file $filmFile
   fi
   
   if [[ $SciFi == 1 ]]; then
+    echo "SciFi ist nicht erwünscht, werden gelöscht" >> $log
     grep -v "SciFi" $filmFile > tmp_file
     mv tmp_file $filmFile
   fi
   
   if [[ $Thriller == 1 ]]; then
+    echo "Thriller sind nicht erwünscht, werden gelöscht" >> $log
     grep -v "Thriller" $filmFile > tmp_file
     mv tmp_file $filmFile
   fi
   
   if [[ $Western == 1 ]]; then
+    echo "Western sind nicht erwünscht, werden gelöscht" >> $log
     grep -v "Western" $filmFile > tmp_file
     mv tmp_file $filmFile
   fi
@@ -156,6 +167,7 @@ case $1 in
     cleanUp
     setUp
     awkInfos
+    removeUnwanted
     ;;
     
 esac
