@@ -1,8 +1,15 @@
 #!/bin/bash
+#set -x
 output="autotimer/"
 tmp="tmp/"
 log="../himmelJederzeit.log"
-
+FilmName="Filme.sorted"
+SerienName="Serien.sorted"
+WeltName="Welt.sorted"
+filmFile=${output}${FilmName}
+serienFile=${output}${SerienName} 
+weltFile=${output}${WeltName}
+. ./himmelJederzeit.cfg
 
 function getHTML() {
   
@@ -18,7 +25,7 @@ function setUp() {
 }
 
 function cleanUp () {
-  files="${tmp}1 ${tmp}Filme ${tmp}Welt ${tmp}Serien ${output}Filme.sorted ${output}Serien.sorted ${output}Welt.sorted "
+  files="${tmp}1 ${tmp}Filme ${tmp}Welt ${tmp}Serien ${filmFile}  ${serienFile} ${weltFile} "
   dirs="tmp autotimer"
   
   for do in $files
@@ -36,11 +43,6 @@ function cleanUp () {
       rmdir $do
     fi
   done
-  #rm -f 1 film.sorted serie.sorted welt.sorted
-  #rm -f tmp/*
-  #if [ -d tmp ]; then 
-  #  rmdir tmp 
-  #fi
 }
 
 function awkInfos() {
@@ -54,18 +56,54 @@ function awkInfos() {
   awk -f lib/first.awk |
   awk -f lib/second.awk 
 
-  sort -n Filme > ${output}Filme.sorted
-  sort -n Serien > ${output}Serien.sorted
-  sort -n Welt > ${output}Welt.sorted
+  sort -n  Filme > ${filmFile}
+ # sort -n  Serien > ${serienFile}
+ # sort -n  Welt > ${weltFile}
 
+  cat ${filmFile} |
+  awk -f lib/third.awk > tmp_file
+  
+  mv tmp_file ${filmFile}
+  
   echo "Anzahl : " `wc -l Filme` >> $log
-  echo "Anzahl : " `wc -l Serien` >> $log
-  echo "Anzahl : " `wc -l Welt` >> $log
+ # echo "Anzahl : " `wc -l Serien` >> $log
+ # echo "Anzahl : " `wc -l Welt` >> $log
   
   mkdir -p tmp
-  mv Filme Serien Welt tmp 
+ # mv Filme Serien Welt tmp 
+  mv Filme tmp 
+  
 }
+#
+#Abenteuer 
+#Action
+#Drama &amp; Emotion
+#Drama &amp; Emotion 
+#Drama &amp;  Emotion
+#Familie
+#Horror
+#Komödie
+#Sci-Fi &amp; Fantasy
+#Thriller
+#Western
+#
 
+function removeUnwanted() {
+  i=0;
+  for x in $Adventure $Action $Drama $Family $Horror $Comedy $SciFi $Thriller $Western
+  do
+    echo "lauf nummer $i" >> $log
+    echo " ist gesetzt auf $x" >> $log 
+    if [[ $x -eq 1 ]]; then      
+      grep -v ${Categories[$i]} ${filmFile} 
+      echo ${Categories[$i]} " wird entfernt" >> $log
+      cp tmp_file ${filmFile}
+    fi
+
+   i=`expr $i + 1`;
+  done
+  
+}
 
 
 case $1 in
@@ -81,9 +119,13 @@ case $1 in
     getHTML
     awkInfos
     ;;
+  "removeUnwanted" )
+    removeUnwanted
+    ;;
   *)
     cleanUp
     setUp
     awkInfos
     ;;
+    
 esac

@@ -5,10 +5,12 @@ BEGIN {
 
 // {
 	gsub ("\<td\>","");
-	gsub ("\<\/td\>","||");
+	gsub ("\<\/td\>","|");
 	gsub ("\<tr\>","");
 	gsub ("\<\/tr\>","");
 	gsub(/\r/,"")
+	
+	
 }
 
 /Tabelle zum austauschen Ende/ {
