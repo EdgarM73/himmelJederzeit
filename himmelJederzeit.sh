@@ -1,5 +1,3 @@
-#!/bin/bash
-#set -x
 output="autotimer/"
 tmp="tmp/"
 log="../himmelJederzeit.log"
@@ -11,7 +9,7 @@ serienFile=${output}${SerienName}
 weltFile=${output}${WeltName}
 . ./himmelJederzeit.cfg
 
-function getHTML() {
+getHTML() {
   
   if [ -f anytime ]; then
     rm anytime
@@ -20,11 +18,11 @@ function getHTML() {
   echo "Hole Daten von Sky: '" $# "'" >> $log
 }
 
-function setUp() {
+setUp() {
   mkdir -p tmp autotimer
 }
 
-function cleanUp () {
+cleanUp () {
   files="${tmp}1 ${tmp}Filme ${tmp}Welt ${tmp}Serien ${filmFile}  ${serienFile} ${weltFile} "
   dirs="tmp autotimer"
   
@@ -45,7 +43,7 @@ function cleanUp () {
   done
 }
 
-function awkInfos() {
+awkInfos() {
   if [ ! -f anytime ]; then
     echo "anytime ist nicht vorhanden!"
     exit 1 
@@ -88,20 +86,52 @@ function awkInfos() {
 #Western
 #
 
-function removeUnwanted() {
-  i=0;
-  for x in $Adventure $Action $Drama $Family $Horror $Comedy $SciFi $Thriller $Western
-  do
-    echo "lauf nummer $i" >> $log
-    echo " ist gesetzt auf $x" >> $log 
-    if [[ $x -eq 1 ]]; then      
-      grep -v ${Categories[$i]} ${filmFile} 
-      echo ${Categories[$i]} " wird entfernt" >> $log
-      cp tmp_file ${filmFile}
-    fi
-
-   i=`expr $i + 1`;
-  done
+removeUnwanted() {
+  
+  if [[ $Adventure == 1 ]]; then
+    grep -v "Adventure" $filmFile > tmp_file
+    mv tmp_file $filmFile
+  fi
+  
+  if [[ $Action == 1 ]]; then
+    grep -v "Action" $filmFile > tmp_file
+    mv tmp_file $filmFile
+  fi
+  
+  if [[ $Drama == 1 ]]; then
+    grep -v "Drama" $filmFile > tmp_file
+    mv tmp_file $filmFile
+  fi
+  
+  if [[ $Family == 1 ]]; then
+    grep -v "Family" $filmFile > tmp_file
+    mv tmp_file $filmFile
+  fi
+  
+  if [[ $Horror == 1 ]]; then
+    grep -v "Horror" $filmFile > tmp_file
+    mv tmp_file $filmFile
+  fi
+  
+  if [[ $Comedy == 1 ]]; then
+    grep -v "Comedy" $filmFile > tmp_file
+    mv tmp_file $filmFile
+  fi
+  
+  if [[ $SciFi == 1 ]]; then
+    grep -v "SciFi" $filmFile > tmp_file
+    mv tmp_file $filmFile
+  fi
+  
+  if [[ $Thriller == 1 ]]; then
+    grep -v "Thriller" $filmFile > tmp_file
+    mv tmp_file $filmFile
+  fi
+  
+  if [[ $Western == 1 ]]; then
+    grep -v "Western" $filmFile > tmp_file
+    mv tmp_file $filmFile
+  fi
   
 }
 
