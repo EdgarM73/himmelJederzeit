@@ -1,28 +1,34 @@
+platform=`uname`
 
+pwd=`pwd`
+var=`dirname $pwd`
+root=`dirname $var`
+root=${root}"/"
+		
 FilmName="Filme.sorted"
 SerienName="Serien.sorted"
 WeltName="Welt.sorted"
 
-log="/tmp/himmelJederzeit.log"
-configdir="/var/tuxbox/config/"
+log=${root}"tmp/himmelJederzeit.log"
+configdir=${root}"var/tuxbox/config/"
 
 jederzeitdir=${configdir}"jederzeit/"
 output=$jederzeitdir"autotimer/"
 tmp=${jederzeitdir}"tmp/"
-$anytime=$jederzeitdir"anytime"
+anytime=$jederzeitdir"anytime"
 
 filmFile=${output}${FilmName}
 serienFile=${output}${SerienName} 
 weltFile=${output}${WeltName}
 
-lib=$jederzeitdir"/lib"
+lib=$jederzeitdir"lib"
 
-. $configdir/himmelJederzeit.cfg
+. ${jederzeitdir}himmelJederzeit.cfg
 
 getHTML() {
   
-  if [ -f anytime ]; then
-    rm anytime
+if [ -f $anytime ]; then
+    rm $anytime
   fi
   wget -O $anytime http://www.sky.de/anytime -U "Mozilla/5.0 (Windows NT 5.1; rv:10.0.2) Gecko/20100101 Firefox/10.0.2" --header="Accept-Language: en-us,en;q=0.5" --header="Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8" --header="Connection: keep-alive"
   echo "Hole Daten von Sky: '" $# "'" >> $log
@@ -68,9 +74,11 @@ awkInfos() {
  # sort -n  Serien > ${serienFile}
  # sort -n  Welt > ${weltFile}
 
+ 
   cat ${filmFile} |
-  awk -f $lib/third.awk > tmp_file
+ awk -v logfile=$log -f $lib/third.awk > tmp_file
   
+echo "file should be now optimized " >> $log
   mv tmp_file ${filmFile}
   
   echo "Anzahl : " `wc -l Filme` >> $log
@@ -169,6 +177,7 @@ case $1 in
     setUp
     getHTML
     awkInfos
+	removeUnwanted
     ;;
   "removeUnwanted" )
     removeUnwanted

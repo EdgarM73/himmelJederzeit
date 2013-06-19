@@ -4,10 +4,10 @@ BEGIN {
 }
 
 // {
-	gsub ("\<td\>","");
-	gsub ("\<\/td\>","|");
-	gsub ("\<tr\>","");
-	gsub ("\<\/tr\>","");
+	gsub ("<td>","");
+	gsub ("</td>","|");
+	gsub ("<tr>","");
+	gsub ("</tr>","");
 	gsub(/\r/,"")
 	
 	
