@@ -3,6 +3,7 @@ BEGIN {
 FS = "|";
 ausgabe = "";
 print "starting match for Typereplacement:"  >> logfile
+print "Bouquet Nr.:"bouquet >> logfile
 }
 // {
 
@@ -33,6 +34,6 @@ print "starting match for Typereplacement:"  >> logfile
  # }
  # else
  # {
-   printf("*%s;*;%s;O;%sanytime/%s\n",bouquetId,$2,mediaVerzeichnis,$7)
+   printf("*%s;*;%s;O;%sanytime/%s\n",bouquet,$2,mediaVerzeichnis,$7)
  # }
 }
