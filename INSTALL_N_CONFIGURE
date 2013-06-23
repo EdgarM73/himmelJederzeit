@@ -1,0 +1,63 @@
+Hallo,
+
+hier nun die Anleitung zum Installieren:
+
+
+Datei herunterladen und auf die Box übertragen nach /tmp
+
+
+einloggen auf der Box per telnet 
+
+Zipfile entpacken:
+cd /tmp 
+unzip himmelJederzeit-master.zip
+cd himmelJederzeit-master
+
+
+und jetzt die Dateien kopieren:
+
+cp -R plugins tuxbox /var
+
+
+Shell Script ausführbar machen:
+
+chmod 775 /var/plugins/himmelJederzeit.sh
+
+
+Dateien die installiert werden:
+
+/var
+	/plugins
+			himmelJederzeit.sh
+	/tuxbox
+			/config
+					/jederzeit
+								himmelJederzeit.cfg
+								lib/
+									first.awk
+									second.awk
+									third.awk
+									third_autotimer.awk
+									Kategorien.awk
+									
+
+die beiden wichtigsten Dateien sind:
+
+/var/plugins/himmelJederzeit.sh
+/var/tuxbox/config/jederzeit/himmelJederzeit.cfg
+	
+Bevor ihr es zum ersten mal ausführt passt die Configdatei an:
+
+Ein Bouquet erstellen mit den gewünschten Kanälen und die Id hier eintragen:
+
+BouquetId=1
+
+Ich habe zur Zeit folgende Kanäle:
+Cinema HD
+Action Hd
+Hits HD
+Disney Channel HD
+Disney Cinemagic HD
+
+
+Darunter sind alle Kategorien die von Sky angeboten werden, nach belieben ein und ausschalten

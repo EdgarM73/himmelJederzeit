@@ -33,6 +33,6 @@ print "starting match for Typereplacement:"  >> logfile
  # }
  # else
  # {
-   printf("*%s;*;%s;O;/media/sda1/movies/anytime/%s\n",$bouquetId,$2,$7)
+   printf("*%s;*;%s;O;/media/sda1/movies/anytime/%s\n",bouquetId,$2,$7)
  # }
 }

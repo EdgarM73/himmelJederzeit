@@ -23,7 +23,7 @@ weltFile=${output}${WeltName}
 
 lib=$jederzeitdir"lib"
 
-. ${jederzeitdir}himmelJederzeit.cfg
+source ${jederzeitdir}himmelJederzeit.cfg
 
 getHTML() {
   
