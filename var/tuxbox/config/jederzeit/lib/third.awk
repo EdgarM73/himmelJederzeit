@@ -29,8 +29,7 @@ print "starting match for Typereplacement:"  >> logfile
  
   if ( substr($5,2,1) != "n" )
   {
-   print "no 2TB date found"$0 >> logfile
-    printf("%s|%s|%s|%s|%s\n",$1,$2,$5,$6,$7)    
+  printf("%s|%s|%s|%s|%s\n",$1,$2,$5,$6,$7)    
   }
   else
   {
