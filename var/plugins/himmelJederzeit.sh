@@ -77,7 +77,7 @@ awkInfos() {
 
  
   cat ${filmFile} |
-awk -v bouquet=$BouquetId -v logfile=$log -f $lib/third_autotimer.awk > tmp_file
+awk -v bouquet=$BouquetId -v logfile=$log -v mediaVerzeichnis=$mediaVerzeichnis -f $lib/third_autotimer.awk > tmp_file
   
 echo "file should be now optimized " >> $log
   mv tmp_file ${filmFile}
@@ -105,6 +105,21 @@ echo "file should be now optimized " >> $log
 #Western
 #
 
+
+createAnytimeDirectories () {
+
+		mkdir -p $mediaVerzeichnis"/anytime/Adventure"
+		mkdir -p $mediaVerzeichnis"/anytime/Action"
+		mkdir -p $mediaVerzeichnis"/anytime/Drama"
+		mkdir -p $mediaVerzeichnis"/anytime/Family"
+		mkdir -p $mediaVerzeichnis"/anytime/Horror"
+		mkdir -p $mediaVerzeichnis"/anytime/Comedy"
+		mkdir -p $mediaVerzeichnis"/anytime/SciFi"
+		mkdir -p $mediaVerzeichnis"/anytime/Thriller"
+		mkdir -p $mediaVerzeichnis"/anytime/Western"
+			
+	
+}
 removeUnwanted() {
   
   if [[ $Adventure == 1 ]]; then
@@ -183,6 +198,7 @@ case $1 in
     ;;
   "full" )
 	addAutoaddAutotimerConfToPrAutoTimer
+	createcreateAnytimeDirectories
     cleanUp
     setUp
     getHTML

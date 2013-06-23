@@ -10,7 +10,7 @@ einloggen auf der Box per telnet
 
 Zipfile entpacken:
 cd /tmp 
-unzip himmelJederzeit-master.zip
+unzip himmelJederzeit-master_v0.8_beta1.zip
 cd himmelJederzeit-master/var
 
 
