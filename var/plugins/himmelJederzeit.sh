@@ -197,8 +197,8 @@ case $1 in
     getHTML
     ;;
   "full" )
-	addAutoaddAutotimerConfToPrAutoTimer
-	createcreateAnytimeDirectories
+	addAutotimerConfToPrAutoTimer
+	createAnytimeDirectories
     cleanUp
     setUp
     getHTML
@@ -212,6 +212,8 @@ case $1 in
 	addAutotimerConfToPrAutoTimer
 	;;
   *)
+	addAutotimerConfToPrAutoTimer
+	createAnytimeDirectories
     cleanUp
     setUp
     awkInfos
