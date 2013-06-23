@@ -27,12 +27,12 @@ print "starting match for Typereplacement:"  >> logfile
     $7 = "Family";
   }
  
-  if ( substr($5,2,1) != "n" )
-  {
-  printf("*1|%s|%s|%s|%s\n",$1,$2,$5,$6,$7)    
-  }
-  else
-  {
-   printf("%s|%s|%s|%s|%s\n",$1,$2,$3,$4,$7)
-  }
+ # if ( substr($5,2,1) != "n" )
+ # {
+ # printf("*1|%s|%s|%s|%s\n",$1,$2,$5,$6,$7)    
+ # }
+ # else
+ # {
+   printf("*1;*;%s;O;/media/sda1/movies/anytime/%s\n",$2,$7)
+ # }
 }

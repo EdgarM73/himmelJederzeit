@@ -38,6 +38,7 @@ setUp() {
   mkdir -p $tmp $output
 }
 
+# cleanup all files not needed for deployement
 cleanUp () {
   files="${tmp}1 ${tmp}Filme ${tmp}Welt ${tmp}Serien ${filmFile}  ${serienFile} ${weltFile} "
   dirs=$tmp $autotimer
@@ -76,7 +77,7 @@ awkInfos() {
 
  
   cat ${filmFile} |
- awk -v logfile=$log -f $lib/third.awk > tmp_file
+awk -v logfile=$log -f $lib/third_autotimer.awk > tmp_file
   
 echo "file should be now optimized " >> $log
   mv tmp_file ${filmFile}
