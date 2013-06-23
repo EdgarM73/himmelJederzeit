@@ -11,7 +11,7 @@ einloggen auf der Box per telnet
 Zipfile entpacken:
 cd /tmp 
 unzip himmelJederzeit-master.zip
-cd himmelJederzeit-master
+cd himmelJederzeit-master/var
 
 
 und jetzt die Dateien kopieren:
