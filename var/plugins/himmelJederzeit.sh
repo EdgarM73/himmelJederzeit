@@ -77,7 +77,7 @@ awkInfos() {
 
  
   cat ${filmFile} |
-awk -v logfile=$log -f $lib/third_autotimer.awk > tmp_file
+awk -v bouquet=$BouquetId -v logfile=$log -f $lib/third_autotimer.awk > tmp_file
   
 echo "file should be now optimized " >> $log
   mv tmp_file ${filmFile}
@@ -165,6 +165,14 @@ removeUnwanted() {
   
 }
 
+addAutotimerConfToPrAutoTimer () {
+	if [[ `grep Filme.sorted /var/tuxbox/config/pr-auto-timer.conf | wc -l ` -eq 0 ]]; then
+		cp /var/tuxbox/config/pr-auto-timer.conf /var/tuxbox/config/pr-auto-timer.conf.orig	
+		echo "RULE_FILE_EXT=/var/tuxbox/config/jederzeit/autotimer/Filme.sorted" >> /var/tuxbox/config/pr-auto-timer.conf 
+	fi
+}
+
+
 
 case $1 in
   "cleanup")
@@ -174,6 +182,7 @@ case $1 in
     getHTML
     ;;
   "full" )
+	addAutoaddAutotimerConfToPrAutoTimer
     cleanUp
     setUp
     getHTML
@@ -183,6 +192,9 @@ case $1 in
   "removeUnwanted" )
     removeUnwanted
     ;;
+	"addAutotimerConfToPrAutoTimer" )
+	addAutotimerConfToPrAutoTimer
+	;;
   *)
     cleanUp
     setUp
