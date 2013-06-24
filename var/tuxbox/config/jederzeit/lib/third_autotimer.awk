@@ -28,14 +28,15 @@ hans=1;
     $7 = "Family";
   }
  
- # if ( substr($5,2,1) != "n" )
- # {
- # printf("*1|%s|%s|%s|%s\n",$1,$2,$5,$6,$7)    
- # }
- # else
- # {
-    printf("*%s;*;%s;O;%sanytime/%s\n",bouquet,$2,mediaVerzeichnis,$7) >> output_file
- # }
+  if ( timeSpan != "" )
+  {
+     printf("*%s;*,%s;%s;O;%sanytime/%s\n",bouquet,timeSpan,$2,mediaVerzeichnis,$7) >> output_file
+  }
+  else
+  {
+     printf("*%s;*;%s;O;%sanytime/%s\n",bouquet,$2,mediaVerzeichnis,$7) >> output_file
+  }
+
 }
 END {
 print ausgabe;

@@ -35,6 +35,7 @@ root=`dirname $var`
 root=${root}"/"
 		
 FilmName="Filme.sorted"
+FilmStatusName="Film.status"
 SerienName="Serien.sorted"
 WeltName="Welt.sorted"
 
@@ -47,6 +48,8 @@ tmp=${jederzeitdir}"tmp/"
 anytime=$jederzeitdir"anytime"
 
 filmFile=${output}${FilmName}
+filmFilePrevious=${output}${FilmName}".orig"
+filmStatusFile=${output}${FilmStatusName}
 serienFile=${output}${SerienName} 
 weltFile=${output}${WeltName}
 
@@ -71,6 +74,11 @@ setUp() {
 # cleanup all files not needed for deployement
 cleanUp () {
 
+	if [ -f $filmFile ]; then
+		Stand
+		cp $filmFile ${filmFilePrevious}
+	fi
+	
 	files="${tmp}1 ${tmp}Filme ${tmp}Welt ${tmp}Serien ${filmFile}  ${serienFile} ${weltFile} "
 	dirs=$tmp $autotimer
 
@@ -103,20 +111,17 @@ awkInfos() {
 	awk -f $lib/second.awk 
 
 	sort -n  Filme > ${filmFile}
- # sort -n  Serien > ${serienFile}
- # sort -n  Welt > ${weltFile}
+	# sort -n  Serien > ${serienFile}
+	# sort -n  Welt > ${weltFile}
 
-hans=0
 
-	#	cat ${filmFile} |
-awk -v output_file=${tmp_file} -v hans=$hans -v bouquet=$BouquetId -v logfile=$log -v mediaVerzeichnis=$mediaVerzeichnis -f $lib/third_autotimer.awk ${filmFile} >> $log
-log "Hans ist jetzt" $hans
+	awk -v timeSpan=$timeSpan -v output_file=${tmp_file} -v bouquet=$BouquetId -v logfile=$log -v mediaVerzeichnis=$mediaVerzeichnis -f $lib/third_autotimer.awk ${filmFile} >> $log
 	log "file should be now optimized "
 	mv ${tmp_file} ${filmFile}
 
 	log "Anzahl : " `wc -l Filme`
- # echo "Anzahl : " `wc -l Serien` >> $log
- # echo "Anzahl : " `wc -l Welt` >> $log
+ 	# echo "Anzahl : " `wc -l Serien` >> $log
+ 	# echo "Anzahl : " `wc -l Welt` >> $log
 
 	mkdir -p $tmp
 	# mv Filme Serien Welt tmp 
@@ -195,6 +200,25 @@ log() {
 	fi
 }
 
+removeAlreadyTimedEntries () {
+		for do in `cut --output-delimiter="_" -d";" -f3 ${filmStatusFile} | sed -e 's/ /(/g'`;
+		do
+			echo "vorher?"
+			string=`echo $do | sed -e 's/(/ /g'`
+			grep -v "${string}" ${filmFile} > ${tmp_file}
+			mv ${tmp_file} ${filmFile}
+			log "Filme aufgenommen:" ${string}
+		done
+}
+
+Stand () {
+	cp ${filmFile} $filmFilePrevious
+	grep "#" ${filmFile} >> ${filmStatusFile}
+	grep -v "#" ${filmFile} > ${tmp_file}
+	mv $tmp_file $filmFile
+}
+
+
 
 case $1 in
 	"cleanup")
@@ -218,7 +242,13 @@ case $1 in
 	"addAutotimerConfToPrAutoTimer" )
 		addAutotimerConfToPrAutoTimer
 	;;
+	"Stand" )
+		Stand
+		removeAlreadyTimedEntries
+	;;
 	*)
+		Stand
+		removeUnwanted
 		addAutotimerConfToPrAutoTimer
 		createAnytimeDirectories
 		cleanUp
@@ -226,4 +256,5 @@ case $1 in
 		awkInfos
 		removeUnwanted
 	;;
+	
 esac
