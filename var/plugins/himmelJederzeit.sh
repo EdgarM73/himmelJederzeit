@@ -1,5 +1,34 @@
 platform=`uname`
 
+VERSION=0.18beta
+ME=${0##*/}
+
+CONFIG_FILE=/var/tuxbox/config/$ME.conf
+PID_FILE=/var/run/$ME.pid
+
+EXIT_SIGNAL=1
+EXIT_NO_RULE_FILE=2
+EXIT_ALREADY_RUNNING=3
+
+TIMERD_EVENT_TYPE_ZAPTO=3
+TIMERD_EVENT_TYPE_RECORD=5
+
+AWK=/bin/awk
+CAT=/bin/cat
+CUT=/bin/cut
+DATE=/bin/date
+EGREP=/bin/egrep
+GREP=/bin/grep
+MKDIR=/bin/mkdir
+MKTEMP=/bin/mktemp
+MSGBOX=/bin/msgbox
+PZAPIT=/bin/pzapit
+RM=/bin/rm
+SED=/bin/sed
+WC=/bin/wc
+WGET=/bin/wget
+
+
 pwd=`pwd`
 var=`dirname $pwd`
 root=`dirname $var`
@@ -22,74 +51,77 @@ serienFile=${output}${SerienName}
 weltFile=${output}${WeltName}
 
 lib=$jederzeitdir"lib"
+tmp_file="./tmp_file"
 
 source ${jederzeitdir}himmelJederzeit.cfg
 
 getHTML() {
-  
-if [ -f $anytime ]; then
-    rm $anytime
-  fi
-  wget -O $anytime http://www.sky.de/anytime -U "Mozilla/5.0 (Windows NT 5.1; rv:10.0.2) Gecko/20100101 Firefox/10.0.2" --header="Accept-Language: en-us,en;q=0.5" --header="Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8" --header="Connection: keep-alive"
-  echo "Hole Daten von Sky: '" $# "'" >> $log
+
+	if [ -f $anytime ]; then
+		rm $anytime
+	fi
+	WGET -O $anytime http://www.sky.de/anytime -U "Mozilla/5.0 (Windows NT 5.1; rv:10.0.2) Gecko/20100101 Firefox/10.0.2" --header="Accept-Language: en-us,en;q=0.5" --header="Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8" --header="Connection: keep-alive"
+	log "Hole Daten von Sky: '" $# "'" 
 }
 
 setUp() {
-  mkdir -p $tmp $output
+	mkdir -p $tmp $output
 }
 
 # cleanup all files not needed for deployement
 cleanUp () {
-  files="${tmp}1 ${tmp}Filme ${tmp}Welt ${tmp}Serien ${filmFile}  ${serienFile} ${weltFile} "
-  dirs=$tmp $autotimer
+
+	files="${tmp}1 ${tmp}Filme ${tmp}Welt ${tmp}Serien ${filmFile}  ${serienFile} ${weltFile} "
+	dirs=$tmp $autotimer
+
+	for do in $files
+	do
+		if [ -f $do ]; then
+			rm $do
+		fi
+	done
   
-  for do in $files
-  do
-    if [ -f $do ]; then
-      rm $do
-    fi
-  done
-  
-  for do in $dirs
-  do
-    echo "testing $do"
-    if [ -d $do ]; then
-      echo "deleting" $do
-      rmdir $do
-    fi
-  done
+	for do in $dirs
+	do
+		log "testing $do"
+		if [ -d $do ]; then
+			log "deleting" $do
+			rmdir $do
+		fi
+	done
 }
 
 awkInfos() {
-  if [ ! -f $anytime ]; then
-    echo "anytime ist nicht vorhanden!"
-    exit 1 
-  fi
-  
-  echo "parse anytime auf Infos" >> $log
-  cat $anytime | 
-  awk -f $lib/first.awk |
-  awk -f $lib/second.awk 
+	if [ ! -f $anytime ]; then
+		echo "anytime ist nicht vorhanden!"
+		exit 1 
+	fi
 
-  sort -n  Filme > ${filmFile}
+	log "parse anytime auf Infos" 
+	cat $anytime | 
+	awk -f $lib/first.awk |
+	awk -f $lib/second.awk 
+
+	sort -n  Filme > ${filmFile}
  # sort -n  Serien > ${serienFile}
  # sort -n  Welt > ${weltFile}
 
- 
-  cat ${filmFile} |
-awk -v bouquet=$BouquetId -v logfile=$log -v mediaVerzeichnis=$mediaVerzeichnis -f $lib/third_autotimer.awk > tmp_file
-  
-echo "file should be now optimized " >> $log
-  mv tmp_file ${filmFile}
-  
-  echo "Anzahl : " `wc -l Filme` >> $log
+hans=0
+
+	#	cat ${filmFile} |
+awk -v output_file=${tmp_file} -v hans=$hans -v bouquet=$BouquetId -v logfile=$log -v mediaVerzeichnis=$mediaVerzeichnis -f $lib/third_autotimer.awk ${filmFile} >> $log
+log "Hans ist jetzt" $hans
+	log "file should be now optimized "
+	mv ${tmp_file} ${filmFile}
+
+	log "Anzahl : " `wc -l Filme`
  # echo "Anzahl : " `wc -l Serien` >> $log
  # echo "Anzahl : " `wc -l Welt` >> $log
-  
-  mkdir -p $tmp
- # mv Filme Serien Welt tmp 
-  mv Filme $tmp 
-  
+
+	mkdir -p $tmp
+	# mv Filme Serien Welt tmp 
+	mv Filme Welt Serien $tmp 
+
 }
 #
 #Abenteuer 
@@ -120,64 +152,32 @@ createAnytimeDirectories () {
 			
 	
 }
+
+# Arg1 Variable for Filmtype
+# Arg2 English String for Filmtype
+# Arg3 German Name for Filmtype
+_removeUnwanted() {
+set +x
+log "testing now "${1} " mit " ${2}  ":" ${3} "<--" 
+	if [[ ${1} == 1 ]]; then
+		log ${3}" sind nicht erwünscht, werden gelöscht" 
+		grep -v ${2} $filmFile > tmp_file
+		mv tmp_file $filmFile
+	fi
+set -x
+}
+
 removeUnwanted() {
-  
-  if [[ $Adventure == 1 ]]; then
-    echo "Abenteuer sind nicht erwünscht, werden gelöscht" >> $log
-    grep -v "Adventure" $filmFile > tmp_file
-    mv tmp_file $filmFile
-  fi
-  
-  if [[ $Action == 1 ]]; then
-    echo "Action ist nicht erwünscht, werden gelöscht" >> $log
-    grep -v "Action" $filmFile > tmp_file
-    mv tmp_file $filmFile
-  fi
-  
-  if [[ $Drama == 1 ]]; then
-    echo "Drama sind nicht erwünscht, werden gelöscht" >> $log
-    grep -v "Drama" $filmFile > tmp_file
-    mv tmp_file $filmFile
-  fi
-  
-  if [[ $Family == 1 ]]; then
-  
-    echo "Familienfilme sind nicht erwünscht, werden gelöscht" >> $log
-    grep -v "Family" $filmFile > tmp_file
-    mv tmp_file $filmFile
-  fi
-  
-  if [[ $Horror == 1 ]]; then 
-    echo "Horror ist nicht erwünscht, werden gelöscht" >> $log
-    grep -v "Horror" $filmFile > tmp_file
-    mv tmp_file $filmFile
-  fi
-  
-  if [[ $Comedy == 1 ]]; then
-  
-    echo "Comedy ist nicht erwünscht, werden gelöscht" >> $log
-    grep -v "Comedy" $filmFile > tmp_file
-    mv tmp_file $filmFile
-  fi
-  
-  if [[ $SciFi == 1 ]]; then
-    echo "SciFi ist nicht erwünscht, werden gelöscht" >> $log
-    grep -v "SciFi" $filmFile > tmp_file
-    mv tmp_file $filmFile
-  fi
-  
-  if [[ $Thriller == 1 ]]; then
-    echo "Thriller sind nicht erwünscht, werden gelöscht" >> $log
-    grep -v "Thriller" $filmFile > tmp_file
-    mv tmp_file $filmFile
-  fi
-  
-  if [[ $Western == 1 ]]; then
-    echo "Western sind nicht erwünscht, werden gelöscht" >> $log
-    grep -v "Western" $filmFile > tmp_file
-    mv tmp_file $filmFile
-  fi
-  
+
+	_removeUnwanted $Adventure "Adventure" "Abenteuer"
+	_removeUnwanted $Western "Western" "Western"
+	_removeUnwanted $Drama "Drama" "Drama"
+	_removeUnwanted $Action "Action" "Action"
+	_removeUnwanted $Family "Family" "Familie"
+	_removeUnwanted $Horror "Horror" "Horror"
+	_removeUnwanted $Comedy "Comedy" "Komödien"
+	_removeUnwanted $SciFi "SciFi" "Science Fiction"
+	_removeUnwanted $Thriller "Thriller" "Thriller"
 }
 
 addAutotimerConfToPrAutoTimer () {
@@ -187,37 +187,43 @@ addAutotimerConfToPrAutoTimer () {
 	fi
 }
 
+log() {
+	#Log message to log file
+	#$*: Log message
+	if [ "$log" != "" ]; then
+		echo -e $($DATE +'%F %H:%M:%S') [$$]: "$*" >> $log
+	fi
+}
 
 
 case $1 in
-  "cleanup")
-    cleanUp
-    ;;
-  "connect" )
-    getHTML
-    ;;
-  "full" )
-	addAutotimerConfToPrAutoTimer
-	createAnytimeDirectories
-    cleanUp
-    setUp
-    getHTML
-    awkInfos
-	removeUnwanted
-    ;;
-  "removeUnwanted" )
-    removeUnwanted
-    ;;
-	"addAutotimerConfToPrAutoTimer" )
-	addAutotimerConfToPrAutoTimer
+	"cleanup")
+		cleanUp
 	;;
-  *)
-	addAutotimerConfToPrAutoTimer
-	createAnytimeDirectories
-    cleanUp
-    setUp
-    awkInfos
-    removeUnwanted
-    ;;
-    
+	"connect" )
+		getHTML
+	;;
+	"full" )
+		addAutotimerConfToPrAutoTimer
+		createAnytimeDirectories
+		cleanUp
+		setUp
+		getHTML
+		awkInfos
+		removeUnwanted
+	;;
+	"removeUnwanted" )
+		removeUnwanted
+	;;
+	"addAutotimerConfToPrAutoTimer" )
+		addAutotimerConfToPrAutoTimer
+	;;
+	*)
+		addAutotimerConfToPrAutoTimer
+		createAnytimeDirectories
+		cleanUp
+		setUp
+		awkInfos
+		removeUnwanted
+	;;
 esac

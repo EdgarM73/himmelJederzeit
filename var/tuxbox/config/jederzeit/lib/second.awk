@@ -10,8 +10,8 @@ BEGIN {
 	next;
 }
 /Welt/ {
-        print $0 > welt;
-        next;
+    print $0 > welt;
+    next;
 }
 // {
 	print $0 > film;

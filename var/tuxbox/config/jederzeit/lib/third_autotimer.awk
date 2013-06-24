@@ -1,9 +1,9 @@
 #!/bin/awk -f
 BEGIN {
 FS = "|";
-ausgabe = "";
-print "starting match for Typereplacement:"  >> logfile
-print "Bouquet Nr.:"bouquet >> logfile
+ausgabe = "starting match for Typereplacement:";
+ausgabe = ausgabe "\nBouquet Nr.:"bouquet ;
+hans=1;
 }
 // {
 
@@ -34,6 +34,9 @@ print "Bouquet Nr.:"bouquet >> logfile
  # }
  # else
  # {
-   printf("*%s;*;%s;O;%sanytime/%s\n",bouquet,$2,mediaVerzeichnis,$7)
+    printf("*%s;*;%s;O;%sanytime/%s\n",bouquet,$2,mediaVerzeichnis,$7) >> output_file
  # }
+}
+END {
+print ausgabe;
 }
