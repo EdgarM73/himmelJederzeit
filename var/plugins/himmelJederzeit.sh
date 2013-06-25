@@ -186,7 +186,7 @@ removeUnwanted() {
 }
 
 addAutotimerConfToPrAutoTimer () {
-	if [[ `grep Filme.sorted /var/tuxbox/config/pr-auto-timer.conf | wc -l ` -eq 0 ]]; then
+	if [[ `grep Filme.sorted ${configdir}pr-auto-timer.conf | wc -l ` -eq 0 ]]; then
 		cp /var/tuxbox/config/pr-auto-timer.conf /var/tuxbox/config/pr-auto-timer.conf.orig	
 		echo "RULE_FILE_EXT=/var/tuxbox/config/jederzeit/autotimer/Filme.sorted" >> /var/tuxbox/config/pr-auto-timer.conf 
 	fi
@@ -201,7 +201,7 @@ log() {
 }
 
 removeAlreadyTimedEntries () {
-		for do in `cut --output-delimiter="_" -d";" -f3 ${filmStatusFile} | sed -e 's/ /(/g'`;
+		for do in `cuts -d";" -f3 ${filmStatusFile} | sed -e 's/ /(/g'`;
 		do
 			echo "vorher?"
 			string=`echo $do | sed -e 's/(/ /g'`
