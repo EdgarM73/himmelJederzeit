@@ -248,7 +248,7 @@ case $1 in
 	;;
 	*)
 		Stand
-		removeUnwanted
+		removeAlreadyTimedEntries
 		addAutotimerConfToPrAutoTimer
 		createAnytimeDirectories
 		cleanUp
