@@ -63,7 +63,7 @@ getHTML() {
 	if [ -f $anytime ]; then
 		rm $anytime
 	fi
-	WGET -O $anytime http://www.sky.de/anytime -U "Mozilla/5.0 (Windows NT 5.1; rv:10.0.2) Gecko/20100101 Firefox/10.0.2" --header="Accept-Language: en-us,en;q=0.5" --header="Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8" --header="Connection: keep-alive"
+	wget -O $anytime http://www.sky.de/anytime -U "Mozilla/5.0 (Windows NT 5.1; rv:10.0.2) Gecko/20100101 Firefox/10.0.2" --header="Accept-Language: en-us,en;q=0.5" --header="Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8" --header="Connection: keep-alive"
 	log "Hole Daten von Sky: '" $# "'" 
 }
 
@@ -111,20 +111,14 @@ awkInfos() {
 	awk -f $lib/second.awk 
 
 	sort -n  Filme > ${filmFile}
-	# sort -n  Serien > ${serienFile}
-	# sort -n  Welt > ${weltFile}
-
 
 	awk -v timeSpan=$timeSpan -v output_file=${tmp_file} -v bouquet=$BouquetId -v logfile=$log -v mediaVerzeichnis=$mediaVerzeichnis -f $lib/third_autotimer.awk ${filmFile} >> $log
 	log "file should be now optimized "
 	mv ${tmp_file} ${filmFile}
 
 	log "Anzahl : " `wc -l Filme`
- 	# echo "Anzahl : " `wc -l Serien` >> $log
- 	# echo "Anzahl : " `wc -l Welt` >> $log
 
 	mkdir -p $tmp
-	# mv Filme Serien Welt tmp 
 	mv Filme Welt Serien $tmp 
 
 }
@@ -163,11 +157,11 @@ createAnytimeDirectories () {
 # Arg3 German Name for Filmtype
 _removeUnwanted() {
 set +x
-log "testing now "${1} " mit " ${2}  ":" ${3} "<--" 
+	log "testing now "${1} " mit " ${2}  ":" ${3} "<--" 
 	if [[ ${1} == 1 ]]; then
 		log ${3}" sind nicht erwünscht, werden gelöscht" 
-		grep -v ${2} $filmFile > tmp_file
-		mv tmp_file $filmFile
+		grep -v ${2} $filmFile > ${tmp_file}
+		mv ${tmp_file} $filmFile
 	fi
 set -x
 }
@@ -186,9 +180,9 @@ removeUnwanted() {
 }
 
 addAutotimerConfToPrAutoTimer () {
-	if [[ `grep Filme.sorted /var/tuxbox/config/pr-auto-timer.conf | wc -l ` -eq 0 ]]; then
-		cp /var/tuxbox/config/pr-auto-timer.conf /var/tuxbox/config/pr-auto-timer.conf.orig	
-		echo "RULE_FILE_EXT=/var/tuxbox/config/jederzeit/autotimer/Filme.sorted" >> /var/tuxbox/config/pr-auto-timer.conf 
+	if [[ `grep Filme.sorted ${configdir}pr-auto-timer.conf | wc -l ` -eq 0 ]]; then
+		cp ${configdir}pr-auto-timer.conf ${configdir}pr-auto-timer.conf.orig	
+		echo "RULE_FILE_EXT=${filmFile}" >> ${configdir}pr-auto-timer.conf 
 	fi
 }
 
