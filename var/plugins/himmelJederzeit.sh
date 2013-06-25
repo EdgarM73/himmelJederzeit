@@ -166,8 +166,8 @@ set +x
 log "testing now "${1} " mit " ${2}  ":" ${3} "<--" 
 	if [[ ${1} == 1 ]]; then
 		log ${3}" sind nicht erwünscht, werden gelöscht" 
-		grep -v ${2} $filmFile > tmp_file
-		mv tmp_file $filmFile
+		grep -v ${2} $filmFile > ${tmp_file}
+		mv ${tmp_file} $filmFile
 	fi
 set -x
 }
@@ -187,8 +187,8 @@ removeUnwanted() {
 
 addAutotimerConfToPrAutoTimer () {
 	if [[ `grep Filme.sorted ${configdir}pr-auto-timer.conf | wc -l ` -eq 0 ]]; then
-		cp /var/tuxbox/config/pr-auto-timer.conf /var/tuxbox/config/pr-auto-timer.conf.orig	
-		echo "RULE_FILE_EXT=/var/tuxbox/config/jederzeit/autotimer/Filme.sorted" >> /var/tuxbox/config/pr-auto-timer.conf 
+		cp ${configdir}pr-auto-timer.conf ${configdir}pr-auto-timer.conf.orig	
+		echo "RULE_FILE_EXT=${filmFile}" >> ${configdir}pr-auto-timer.conf 
 	fi
 }
 
