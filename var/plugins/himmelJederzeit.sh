@@ -254,6 +254,8 @@ case $1 in
 		cleanUp
 		setUp
 		awkInfos
+		Stand
+		removeAlreadyTimedEntries
 		removeUnwanted
 	;;
 	
