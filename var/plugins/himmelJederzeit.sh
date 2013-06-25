@@ -195,7 +195,7 @@ log() {
 }
 
 removeAlreadyTimedEntries () {
-		for do in `cut --output-delimiter="_" -d";" -f3 ${filmStatusFile} | sed -e 's/ /(/g'`;
+		for do in `cut  -d";" -f3 ${filmStatusFile} | sed -e 's/ /(/g'`;
 		do
 			echo "vorher?"
 			string=`echo $do | sed -e 's/(/ /g'`
