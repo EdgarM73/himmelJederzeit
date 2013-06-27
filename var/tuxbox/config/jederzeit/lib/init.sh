@@ -24,6 +24,17 @@ init() {
 		touch ${jederzeitdir}gelaufen
 	fi
 	
+	echo "Intializierung ist fertig, die Konfigurationsdatei /var/tuxbox/config/jederzeit/himmelJederzeit.cfg ist fertig"
+	echo
+	echo "Es wurde ein neues Bouquet mit der Nr. bouquetId erstellt, enthalten sind folgende Sender:"
+	echo
+	echo "\tSky Cinema HD"
+	echo "\tSky Action HD"
+	echo "\tSky Hits HD"
+	echo "\tDisney Channel HD"
+	echo "\tDisney Cinemagic HD""" +
+	echo
+	echo
 }
 
 makeConfig() {
@@ -167,5 +178,5 @@ sedConfigFile() {
 
 setUp() {
 	log "startin function: setUp" 
-	mkdir -p $tmp $output
+	mkdir -p $tmp $output $wgetDirectory
 }

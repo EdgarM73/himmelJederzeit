@@ -31,4 +31,9 @@ identifyAndAddChannels() {
 
 getHimmelJederzeitBouquet() {
 	bouquetId=`pzapit | grep himmelJederzeit | cut -d":" -f1`
+	if [[ $bouquetId == "" ]]
+	then
+		echo "himmelJederzeit Bouquet nicht gefunden"
+		exit;
+	fi
 }
