@@ -1,0 +1,53 @@
+#Configuration File for Sky Anytime Emu
+
+#  Bei Ja Nein Einstellungen ist 
+#  0 = Ja
+#  1 = Nein
+
+BouquetId=%%bouquetId%%
+
+# Hier bitte keine 1 eintragen, da ansonsten gar nichts aufgenommen wird.
+Film=0
+
+mediaVerzeichnis=%%mediaVerzeichnis%%
+
+# Zeit in der Timer gesetzt werden dürfen
+# z.b. 10:00-20:00 oder auch 23:00-20:00 Uhr
+# Falls keine Ausnahme gebraucht wird, einfach leer lassen
+#timeSpan=
+
+timeSpan=%%timeSpan%%
+
+
+# Kategorien für Filme 
+#Abenteuer 
+Adventure=%%Adventure%%
+
+# Action
+Action=%%Action%%
+
+# Drama und Emotionen
+Drama=%%Drama%%
+
+#Familie
+Family=%%Family%%
+
+#Horror
+Horror=%%Horror%%
+
+#Komödie
+Comedy=%%Comedy%%
+
+#Science Fiction und Fantasy
+SciFi=%%SciFi%%
+
+#Thriller
+Thriller=%%Thriller%%
+
+#Western
+Western=%%Western%%
+
+
+# Serien und Welt sind derzeit NICHT aktivierbar
+#Serien=1
+#Welt=1
