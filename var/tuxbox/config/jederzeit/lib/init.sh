@@ -22,26 +22,26 @@ init() {
 		Stand
 		removeAlreadyTimedEntries
 		touch ${jederzeitdir}gelaufen
-	fi
+		echo -e "Intializierung ist fertig, die Konfigurationsdatei /var/tuxbox/config/jederzeit/himmelJederzeit.cfg ist fertig"
+		echo
+		echo -e "Es wurde ein neues Bouquet mit der Nr. $bouquetId erstellt, enthalten sind folgende Sender:"
+		echo
+		echo -e "\tSky Cinema HD"
+		echo -e "\tSky Action HD"
+		echo -e "\tSky Hits HD"
+		echo -e "\tDisney Channel HD"
+		echo -e "\tDisney Cinemagic HD"
+		echo
+		echo
+		fi
 	
-	echo "Intializierung ist fertig, die Konfigurationsdatei /var/tuxbox/config/jederzeit/himmelJederzeit.cfg ist fertig"
-	echo
-	echo "Es wurde ein neues Bouquet mit der Nr. bouquetId erstellt, enthalten sind folgende Sender:"
-	echo
-	echo "\tSky Cinema HD"
-	echo "\tSky Action HD"
-	echo "\tSky Hits HD"
-	echo "\tDisney Channel HD"
-	echo "\tDisney Cinemagic HD""" +
-	echo
-	echo
 }
 
 makeConfig() {
 	log "startin function: makeConfig" 
 	if [ ! -f ${jederzeitdir}himmelJederzeit.cfg ];
 	then
-		echo "Es gibt bereits eine Konfiguration, soll sie ersetzt werden? (J/N)"
+		echo -en "\nEs gibt bereits eine Konfiguration, soll sie ersetzt werden? (J/N)\t# "
 		read answer
 		if [[ $answer != "j" && $answer !="J" ]];
 		then
@@ -54,7 +54,7 @@ makeConfig() {
 
 	while [ true ];
 	do
-		echo -n "Wo werden Filme gespeichert, bitte mit abschließendem / ( default: /media/sda1/movies/ )? #"
+		echo -en "\nWo werden Filme gespeichert, bitte mit abschließendem / ( default: /media/sda1/movies/ )?\t# "
 		read mediaVerzeichnis
 		if [[ $mediaVerzeichnis == ""  ]];
 		then
@@ -65,11 +65,11 @@ makeConfig() {
 			break;
 		fi
 	done
-
-	echo -n "Von wann bis wann darf aufgenommen werden (format: 23:00-20:00 oder 06:00-18:00, Leer für immer)? #"
+	
+	echo -en "\nVon wann bis wann darf aufgenommen werden (format: 23:00-20:00 oder 06:00-18:00, Leer für immer)?\t# "
 	read timeSpan
 
-	echo -n "Sollen Abenteuerfilme aufgenommen werden ( J/N default:J ))? #"
+	echo -en "\nSollen Abenteuerfilme aufgenommen werden ( J/N default:J ))?\t# "
 	read Adventure
 	if [[ "$Adventure" == "j" || "$Adventure" == "J" || "$Adventure" == "" ]];
 	then
@@ -78,7 +78,7 @@ makeConfig() {
 		Adventure=1
 	fi
 
-	echo -n "Sollen Actionfilme aufgenommen werden ( J/N default:J ))? #"
+	echo -en "\nSollen Actionfilme aufgenommen werden ( J/N default:J ))?\t# "
 	read Action
 	if [[ "$Action" == "j" || "$Action" == "J" || "$Action" == "" ]];
 	then
@@ -87,7 +87,7 @@ makeConfig() {
 		Action=1
 	fi
 
-	echo -n "Sollen Drama aufgenommen werden ( J/N default:J ))? #"
+	echo -en "\nSollen Drama aufgenommen werden ( J/N default:J ))?\t# "
 	read Drama
 	if [[ "$Drama" == "j" || "$Drama" == "J" || "$Drama" == "" ]];
 	then
@@ -96,7 +96,7 @@ makeConfig() {
 		Drama=1
 	fi
 
-	echo -n "Sollen Familienfilme aufgenommen werden ( J/N default:J ))? #"
+	echo -en "\nSollen Familienfilme aufgenommen werden ( J/N default:J ))?\t# "
 	read Family
 	if [[ "$Family" == "j" || "$Family" == "J" || "$Family" == "" ]];
 	then
@@ -105,7 +105,7 @@ makeConfig() {
 		Family=1
 	fi
 	
-	echo -n "Sollen Horrorfilme aufgenommen werden ( J/N default:J ))? #"
+	echo -en "\nSollen Horrorfilme aufgenommen werden ( J/N default:J ))?\t# "
 	read Horror
 	if [[ "$Horror" == "j" || "$Horror" == "J" || "$Horror" == "" ]];
 	then
@@ -114,7 +114,7 @@ makeConfig() {
 		Horror=1
 	fi
 
-	echo -n "Sollen Comedyfilme aufgenommen werden ( J/N default:J ))? #"
+	echo -ne "\nSollen Comedyfilme aufgenommen werden ( J/N default:J ))?\t# "
 	read Comedy
 	if [[ "$Comedy" == "j" || "$Comedy" == "J" || "$Comedy" == "" ]];
 	then
@@ -123,7 +123,7 @@ makeConfig() {
 		Comedy=1
 	fi
 
-	echo -n "Sollen ScienceFiction und Fantasyfilme aufgenommen werden ( J/N default:J ))? #"
+	echo -en "\nSollen ScienceFiction und Fantasyfilme aufgenommen werden ( J/N default:J ))?\t# "
 	read SciFi
 	if [[ "$SciFi" == "j" || "$SciFi" == "J" || "$SciFi" == "" ]];
 	then
@@ -132,7 +132,7 @@ makeConfig() {
 		SciFi=1
 	fi
 
-	echo -n "Sollen Thriller aufgenommen werden ( J/N default:J ))? #"
+	echo -en "\nSollen Thriller aufgenommen werden ( J/N default:J ))?\t# "
 	read Thriller
 	if [[ "$Thriller" == "j" || "$Thriller" == "J" || "$Thriller" == "" ]];
 	then
@@ -141,7 +141,7 @@ makeConfig() {
 	Thriller=1
 	fi
 
-	echo -n "Sollen Western aufgenommen werden ( J/N default:J ))? #"
+	echo -en "\nSollen Western aufgenommen werden ( J/N default:J ))?\t# "
 	read Western
 	if [[ "$Western" == "j" || "$Western" == "J" || "$Western" == "" ]];
 	then
@@ -154,7 +154,7 @@ makeConfig() {
 	
 	log "Template copied to cfg file "
 
-	sedConfigFile "bouqueId" $bouquetId
+	sedConfigFile "bouquetId" $bouquetId
 	sedConfigFile "mediaVerzeichnis" "$mediaVerzeichnis"
 	sedConfigFile "timeSpan" $timeSpan
 	sedConfigFile "Drama" $Drama
@@ -171,7 +171,7 @@ makeConfig() {
 
 sedConfigFile() {
 	log "startin function: sedConfigFile" 
-	sed -e 's#%%$1%%#$2#' ${jederzeitdir}himmelJederzeit.cfg > ${jederzeitdir}himmelJederzeit.cfg.tmp
+	sed -e 's#%%'"$1"'%%#'"$2"'#' ${jederzeitdir}himmelJederzeit.cfg > ${jederzeitdir}himmelJederzeit.cfg.tmp
 	mv ${jederzeitdir}himmelJederzeit.cfg.tmp ${jederzeitdir}himmelJederzeit.cfg
 	
 }
@@ -179,4 +179,4 @@ sedConfigFile() {
 setUp() {
 	log "startin function: setUp" 
 	mkdir -p $tmp $output $wgetDirectory
-}
+	}

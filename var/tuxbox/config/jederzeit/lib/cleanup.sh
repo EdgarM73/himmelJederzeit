@@ -8,7 +8,7 @@ cleanUp () {
 	fi
 	
 	files="${tmp}1 ${tmp}Filme ${tmp}Welt ${tmp}Serien ${filmFile}  ${serienFile} ${weltFile} "
-	dirs=${wgetDirectory} ${tmp} 
+	dirs="${wgetDirectory} ${tmp}"
 	
 	for do in $files
 	do
@@ -21,7 +21,7 @@ cleanUp () {
 #	do
 #		log "testing $do"
 #		if [ -d $do ]; then
-#			log "deleting" $do
+#			log "deleting" "$do"
 #			rmdir $do
 #		fi
 #	done

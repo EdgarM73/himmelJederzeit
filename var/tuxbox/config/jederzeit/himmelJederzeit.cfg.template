@@ -4,7 +4,7 @@
 #  0 = Ja
 #  1 = Nein
 
-BouquetId=%%bouquetId%%
+bouquetId=%%bouquetId%%
 
 # Hier bitte keine 1 eintragen, da ansonsten gar nichts aufgenommen wird.
 Film=0

@@ -26,9 +26,9 @@ weltFile=${output}${WeltName}
 
 lib=$jederzeitdir"lib/"
 tmp_file=${tmp}"tmp_file"
-wgetDirectory=${tmp}"wget"
+wgetDirectory=${tmp}"wget/"
 
-source ${jederzeitdir}himmelJederzeit.cfg
+
 source ${lib}sky.sh
 source ${lib}bouquet.sh
 source ${lib}cleanup.sh
@@ -41,6 +41,8 @@ source ${lib}main.sh
 
 # cleanup all files not needed for deployement
 
+
+source ${jederzeitdir}himmelJederzeit.cfg
 
 log() {
 	#Log message to log file

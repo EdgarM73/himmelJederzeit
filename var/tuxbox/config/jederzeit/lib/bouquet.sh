@@ -26,7 +26,7 @@ identifyAndAddChannels() {
         ids=$ids","`grep "Disney Cinemagic HD" ${wgetDirectory}channellist.sorted | cut -f1 -d" "`
                 
         wget -O ${wgetDirectory}zwo  "http://127.0.0.1/control/changebouquet?selected=${bouquetId}&bchannels=${ids}"
-        wget -O $${wgetDirectory}vier "http://127.0.0.1/control/savebouquet"
+        wget -O ${wgetDirectory}vier "http://127.0.0.1/control/savebouquet"
 }
 
 getHimmelJederzeitBouquet() {
