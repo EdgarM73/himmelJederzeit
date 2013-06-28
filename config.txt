@@ -68,5 +68,3 @@ send third_autotimer.awk
 send unwanted.sh
 
 bye
->>>>>>> branch 'master' of https://github.com/EdgarM73/himmelJederzeit.git
-bye
