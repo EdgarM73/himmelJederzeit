@@ -63,7 +63,7 @@ send second.sh
 
 send sky.sh
 
-send thirs_autotimer.awk
+send third_autotimer.awk
 
 send unwanted.sh
 
