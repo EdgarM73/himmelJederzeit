@@ -56,9 +56,9 @@ makeConfig() {
 	do
 		echo -en "\nWo werden Filme gespeichert, bitte mit abschließendem / ( default: /media/sda1/movies/ )?\t# "
 		read mediaVerzeichnis
-		if [[ $mediaVerzeichnis == ""  ]];
+		if [[ "$mediaVerzeichnis" == ""  ]];
 		then
-			mediaVerzeichnis=/media/sda1/movies/
+			mediaVerzeichnis="/media/sda1/movies/"
 			break;
 		elif [[ -d $mediaVerzeichnis && `expr match "$mediaVerzeichnis" '.*/$'` -gt 0 ]]
 		then

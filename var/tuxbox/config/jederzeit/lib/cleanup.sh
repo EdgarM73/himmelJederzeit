@@ -35,6 +35,10 @@ removeAlreadyTimedEntries () {
 		grep -v "${string}" ${filmFile} > ${tmp_file}
 		mv ${tmp_file} ${filmFile}
 		log "Filme aufgenommen:" ${string}
+		if [[ $2 == "GUI" ]]
+		then
+			echo $string
+		fi
 	done
 }
 
