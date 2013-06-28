@@ -52,9 +52,15 @@ log() {
 	fi
 }
 
-init
+
 
 case $1 in
+	"initGUI" )
+		initGUI
+	;;
+	"init" )
+		init
+	;;
 	"cleanup")
 		cleanUp
 	;;

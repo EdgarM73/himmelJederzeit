@@ -8,6 +8,39 @@ addAutotimerConfToPrAutoTimer () {
 	fi
 }
 
+initGUI() {
+	log "startin function: init" 
+	log "Testing if initialization has to be done"
+	
+	if [ ! -f ${jederzeitdir}gelaufen ]; 
+	then
+		createBouquet
+		identifyAndAddChannels
+		//makeConfig
+		
+		getHimmelJederzeitBouquet
+		sedConfigFile "bouquetId" $bouquetId
+		
+		addAutotimerConfToPrAutoTimer
+		createAnytimeDirectories
+		Stand
+		removeAlreadyTimedEntries
+		touch ${jederzeitdir}gelaufen
+		echo -e "Intializierung ist fertig, die Konfigurationsdatei /var/tuxbox/config/jederzeit/himmelJederzeit.cfg ist fertig"
+		echo
+		echo -e "Es wurde ein neues Bouquet 'himmelJederzeit' mit der Nr. $bouquetId erstellt, enthalten sind folgende Sender:"
+		echo
+		echo -e "\tSky Cinema HD"
+		echo -e "\tSky Action HD"
+		echo -e "\tSky Hits HD"
+		echo -e "\tDisney Channel HD"
+		echo -e "\tDisney Cinemagic HD"
+		echo
+		echo
+	fi
+	
+}
+
 init() {
 	log "startin function: init" 
 	log "Testing if initialization has to be done"
@@ -24,7 +57,7 @@ init() {
 		touch ${jederzeitdir}gelaufen
 		echo -e "Intializierung ist fertig, die Konfigurationsdatei /var/tuxbox/config/jederzeit/himmelJederzeit.cfg ist fertig"
 		echo
-		echo -e "Es wurde ein neues Bouquet mit der Nr. $bouquetId erstellt, enthalten sind folgende Sender:"
+		echo -e "Es wurde ein neues Bouquet 'himmelJederzeit' mit der Nr. $bouquetId erstellt, enthalten sind folgende Sender:"
 		echo
 		echo -e "\tSky Cinema HD"
 		echo -e "\tSky Action HD"
@@ -33,7 +66,7 @@ init() {
 		echo -e "\tDisney Cinemagic HD"
 		echo
 		echo
-		fi
+	fi
 	
 }
 
