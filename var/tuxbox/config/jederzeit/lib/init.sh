@@ -9,7 +9,7 @@ addAutotimerConfToPrAutoTimer () {
 }
 
 initGUI() {
-	log "startin function: init" 
+	log "startin function: initGUI" 
 	log "Testing if initialization has to be done"
 	
 	cp ${jederzeitdir}himmelJederzeit.cfg.template ${jederzeitdir}himmelJederzeit.cfg
