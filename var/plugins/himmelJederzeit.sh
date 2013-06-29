@@ -103,6 +103,7 @@ case $1 in
 		getHTML
 	;;
 	"full" )
+		getHimmelJederzeitBouquet
 		cleanUp
 		setUp
 		getHTML
@@ -120,6 +121,7 @@ case $1 in
 		removeAlreadyTimedEntries
 	;;
 	*)
+		getHimmelJederzeitBouquet
 		cleanUp
 		setUp
 		awkInfos

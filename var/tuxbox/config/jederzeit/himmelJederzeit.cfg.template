@@ -1,23 +1,36 @@
 #Configuration File for Sky Anytime Emu
 
-#  Bei Ja Nein Einstellungen ist 
-#  0 = Ja
-#  1 = Nein
-
-bouquetId=%%bouquetId%%
+# bitte nicht von Hand anpassen, wird automatisch geändert
+#bouquetId=%%bouquetId%%
 
 # Hier bitte keine 1 eintragen, da ansonsten gar nichts aufgenommen wird.
 Film=0
 
-# bitte nicht von Hand anpassen, wird automatisch geändert
-mediaVerzeichnis=%%mediaVerzeichnis%%
+
+#########################################
+Oben nichts ändern, wird automatisch gesetzt
+#########################################
+
+
+
+# Verzeichnis mit abschliesenden / 
+# z.b. /media/sda1/movies/
+##
+mediaVerzeichnis="%%mediaVerzeichnis%%"
+
+
+
+#  Bei Ja Nein Einstellungen ist 
+#  0 = Ja
+#  1 = Nein
+
 
 # Zeit in der Timer gesetzt werden dürfen
 # z.b. 10:00-20:00 oder auch 23:00-20:00 Uhr
 # Falls keine Ausnahme gebraucht wird, einfach leer lassen
 #timeSpan=
 
-timeSpan=%%timeSpan%%
+timeSpan=
 
 
 # Kategorien für Filme 
