@@ -76,12 +76,15 @@ source ${lib}main.sh
 
 # cleanup all files not needed for deployement
 
-if [ -f ${jederzeitdir}himmelJederzeit.cfg ]
+if [ ! -f ${jederzeitdir}himmelJederzeit.cfg ]
 then
-	source ${jederzeitdir}himmelJederzeit.cfg
-else
 	cp ${jederzeitdir}himmelJederzeit.cfg.template ${jederzeitdir}himmelJederzeit.cfg		
 fi
+
+
+source ${jederzeitdir}himmelJederzeit.cfg
+
+
 log() {
 	#Log message to log file
 	#$*: Log message
