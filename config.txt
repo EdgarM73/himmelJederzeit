@@ -14,10 +14,11 @@ send InitialisierehimmelJederzeit.cfg
 quote site chmod 775 himmelJederzeit.sh
 quote site chmod 775 InitialisierehimmelJederzeit.sh
 cd ../../../var/plugins
-send plugins/himmelJEederzeit.sh
+lcd ../../../var/plugins
+send himmelJEederzeit.sh
 quite site chmod 775 himmelJederzeit.sh
 cd ../tuxbox/config/jederzeit
-lcd tuxbox/config/jederzeit
+lcd ../tuxbox/config/jederzeit
 send himmelJederzeit.cfg
 send himmelJederzeit.cfg.template
 cd lib
