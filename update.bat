@@ -10,7 +10,7 @@ ECHO ---------------------------------------------------------------------------
 
 ECHO -----------------------------------------------------------------------------------------------------------
 ECHO Ist die Konfiguration angepasst? Falls nicht, bitte Fenster schließen
-ECHO var/tuxbox/config/jederzeit/himmelJederzeit.cfg.
+ECHO var/tuxbox/config/jederzeit/himmelJederzeit.cfg.template
 ECHO -----------------------------------------------------------------------------------------------------------
 
 Pause
