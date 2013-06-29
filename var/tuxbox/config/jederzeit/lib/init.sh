@@ -12,7 +12,7 @@ initGUI() {
 	log "startin function: initGUI" 
 	log "Testing if initialization has to be done"
 	
-	cp ${jederzeitdir}himmelJederzeit.cfg.template ${jederzeitdir}himmelJederzeit.cfg
+		cp ${jederzeitdir}himmelJederzeit.cfg.template ${jederzeitdir}himmelJederzeit.cfg
 		createBouquet
 		identifyAndAddChannels
 		getHimmelJederzeitBouquet
