@@ -1,4 +1,4 @@
-# Copyright (C) 2012-2013  Erdal Akkaya, erdal@akkaya.info
+# Copyright (C) 2013-2013  Erdal Akkaya, erdal@akkaya.info
 #
 #
 # This program is free software; you can redistribute it and/or modify
@@ -16,23 +16,21 @@
 # Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110, USA
 
 # Related files:
-#	Configuration:		/var/tuxbox/config/pr-auto-timer.conf
-#	Timer rules:	 	/var/tuxbox/config/pr-auto-timer.rules
-#	Neutrino plugin:	/lib/tuxbox/plugins/pr-auto-timer.{so,cfg}
+#	Configuration:		/var/tuxbox/config/jederzeit/pr-auto-timer.conf
+#	AutoTimer file:		/var/tuxbox/config/jederzeit/autotimer/Filme.sorted
+#	Neutrino plugin:	/lib/tuxbox/plugins/himmelJederzeit.{sh,cfg}
+#	Executable:			/var/plugins/himmelJederzeit.sh
+#	Logfile:			/tmp/himmelJederzeit.sh
 
 # Todo:
 #
-#	-show pr-auto-timer as a script plugin in neutrino
-#	-simulate Sky Anytime
+#	- 
 
 # Changelog:
 #
-# 0.17
-#	-accept day groups "Weekday" and "Weekend"
-#	-small code optimizations
-#	-accept uppercase flags only
-#	-Add possible exlusion expressions
-#		FOX HD;*;LOST,!Special
+# 0.9 beta3
+#	-added installation Script"
+#	-added Neutrino Plugin for init and for runtime
 #
 
 platform=`uname`

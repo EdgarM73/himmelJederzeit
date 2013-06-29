@@ -9,6 +9,7 @@ bouquetId=%%bouquetId%%
 # Hier bitte keine 1 eintragen, da ansonsten gar nichts aufgenommen wird.
 Film=0
 
+# bitte nicht von Hand anpassen, wird automatisch geändert
 mediaVerzeichnis=%%mediaVerzeichnis%%
 
 # Zeit in der Timer gesetzt werden dürfen

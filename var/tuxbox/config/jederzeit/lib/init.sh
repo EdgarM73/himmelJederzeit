@@ -12,15 +12,10 @@ initGUI() {
 	log "startin function: init" 
 	log "Testing if initialization has to be done"
 	
-	if [ ! -f ${jederzeitdir}gelaufen ]; 
-	then
 		createBouquet
 		identifyAndAddChannels
-		//makeConfig
-		
 		getHimmelJederzeitBouquet
 		sedConfigFile "bouquetId" $bouquetId
-		
 		addAutotimerConfToPrAutoTimer
 		createAnytimeDirectories
 		Stand
@@ -37,7 +32,6 @@ initGUI() {
 		echo -e "\tDisney Cinemagic HD"
 		echo
 		echo
-	fi
 	
 }
 
