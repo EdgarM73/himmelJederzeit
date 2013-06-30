@@ -16,7 +16,7 @@ quote site chmod 775 InitialisierehimmelJederzeit.sh
 cd ../../../var/plugins
 lcd ../../../var/plugins
 send himmelJederzeit.sh
-quite site chmod 775 himmelJederzeit.sh
+quote site chmod 775 himmelJederzeit.sh
 cd ../tuxbox/config/jederzeit
 lcd ../tuxbox/config/jederzeit
 send himmelJederzeit.cfg.template
