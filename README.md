@@ -12,11 +12,13 @@ First of all the automation will only generate files which can be further proces
 
 Features neccessary :
 
-done      - parse sky list and create files in readable format
-done      - create the timing for records as good as possible ( maybe configurable only during some hours )
-done      - store the records in an defined structure
-done      - make it configurable which kind of records shall be startet ( like Kids, Thriller, Docu ... )
-almost      - taking care that a record is only done once
+      - DONE parse sky list and create files in readable format
+      - DONE create the timing for records as good as possible ( maybe configurable only during some hours )
+      - DONE store the records in an defined structure
+      - DONE make it configurable which kind of records shall be startet ( like Kids, Thriller, Docu ... )
+      - ALMOST taking care that a record is only done once
+      - DONE adding a plugin for menu
+      - ALMOST automatic install
       
 Features nice to have:
 
