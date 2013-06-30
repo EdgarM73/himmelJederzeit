@@ -20,7 +20,7 @@ almost      - taking care that a record is only done once
       
 Features nice to have:
 
-      - download Pictures from e.g. IMDB
+      - download Pictures from e.g. IMDB 
       - send information to the user which records have been initiated and which could'nt
       - configurable autodelete for records
       
