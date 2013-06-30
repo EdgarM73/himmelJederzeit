@@ -7,7 +7,7 @@ createBouquet() {
 	fi
 	mkdir ${wgetDirectory}
 	log "startin function: createBouquet" 
-	wget -O ${wgetDirectory}eins "http://127.0.0.1/control/addbouquet?name=himmelAnytime"
+	wget -O ${wgetDirectory}eins "http://127.0.0.1/control/addbouquet?name=himmelJederzeit"
 	getHimmelJederzeitBouquet
 	#wget -O ${wgetDirectory}eins.2 "http://127.0.0.1/control/setbouquet?selected=${bouquetId}&action=show"
 	wget -O ${wgetDirectory}eins.2.1 "http://127.0.0.1/control/setbouquet?selected=${bouquetId}&action=unlock"
