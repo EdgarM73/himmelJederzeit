@@ -114,6 +114,8 @@ case $1 in
 		setUp
 		getHTML
 		awkInfos
+		Stand
+		removeAlreadyTimedEntries
 		removeUnwanted
 	;;
 	"removeUnwanted" )
