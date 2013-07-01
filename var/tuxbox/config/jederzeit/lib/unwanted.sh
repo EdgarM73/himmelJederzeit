@@ -6,7 +6,7 @@
 _removeUnwanted() {
 	log "startin function: _removeUnwanted" 
 	log "testing now "${1} " mit " ${2}  ":" ${3} "<--" 
-	if [[ ${1} == 1 ]]; then
+	if [[ ${1} == 0 ]]; then
 		log ${3}" sind nicht erwünscht, werden gelöscht" 
 		grep -v ${2} $filmFile > ${tmp_file}
 		mv ${tmp_file} $filmFile
