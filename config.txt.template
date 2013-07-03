@@ -1,0 +1,37 @@
+open ipadresse
+Benutzername
+passwort
+mkdir /var/tuxbox/config/jederzeit
+mkdir /var/tuxbox/config/jederzeit/lib
+quote site chmod 777 /var/tuxbox/config/jederzeit/
+quote site chmod 777 /var/tuxbox/config/jederzeit/lib
+cd /lib/tuxbox/plugins
+lcd lib/tuxbox/plugins
+send himmelJederzeit.sh
+send himmelJederzeit.cfg
+send InitialisierehimmelJederzeit.sh
+send InitialisierehimmelJederzeit.cfg
+quote site chmod 775 himmelJederzeit.sh
+quote site chmod 775 InitialisierehimmelJederzeit.sh
+cd ../../../var/plugins
+lcd ../../../var/plugins
+send himmelJederzeit.sh
+quote site chmod 775 himmelJederzeit.sh
+cd ../tuxbox/config/jederzeit
+lcd ../tuxbox/config/jederzeit
+send himmelJederzeit.cfg.template
+del himmelJederzeit.cfg
+del gelaufen
+cd lib
+lcd lib
+send bouquet.sh
+send cleanup.sh
+send createTargetStructure.sh
+send first.awk
+send init.sh
+send main.sh
+send second.awk
+send sky.sh
+send third_autotimer.awk
+send unwanted.sh
+bye
