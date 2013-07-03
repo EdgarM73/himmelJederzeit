@@ -1,5 +1,10 @@
 #!/bin/sh
 
+
+getMediaDirectory() {
+	mediaVerzeichnis=`grep "network_nfs_moviedir" /var/tuxbox/config/neutrino.conf | cut -d"=" -f2`
+}
+
 awkInfos() {
 	log "startin function: awkInfos" 
 	if [ ! -f $anytime ]; then

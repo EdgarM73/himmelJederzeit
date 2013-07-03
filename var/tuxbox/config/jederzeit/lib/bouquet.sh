@@ -24,8 +24,13 @@ identifyAndAddChannels() {
         ids=$ids","`grep "Sky Hits HD" ${wgetDirectory}channellist.sorted | cut -f1 -d" "`
         ids=$ids","`grep "Disney Channel HD" ${wgetDirectory}channellist.sorted | cut -f1 -d" "`
         ids=$ids","`grep "Disney Cinemagic HD" ${wgetDirectory}channellist.sorted | cut -f1 -d" "`
-                
+        ids=$ids","`grep "Sky Comedy" ${wgetDirectory}channellist.sorted | cut -f1 -d" "`
+        ids=$ids","`grep "Sky Emotion" ${wgetDirectory}channellist.sorted | cut -f1 -d" "`
+        
+        
         wget -O ${wgetDirectory}zwo  "http://127.0.0.1/control/changebouquet?selected=${bouquetId}&bchannels=${ids}"
+
+        echo "wget -O ${wgetDirectory}zwo  \"http://127.0.0.1/control/changebouquet?selected=${bouquetId}&bchannels=${ids}\""
         wget -O ${wgetDirectory}vier "http://127.0.0.1/control/savebouquet"
 }
 

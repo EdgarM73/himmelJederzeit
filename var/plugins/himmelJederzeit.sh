@@ -74,6 +74,7 @@ source ${lib}unwanted.sh
 source ${lib}init.sh
 source ${lib}main.sh
 
+
 # cleanup all files not needed for deployement
 
 if [ ! -f ${jederzeitdir}himmelJederzeit.cfg ]
@@ -83,6 +84,7 @@ fi
 
 
 source ${jederzeitdir}himmelJederzeit.cfg
+getMediaDirectory
 
 
 log() {

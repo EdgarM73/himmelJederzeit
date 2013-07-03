@@ -11,15 +11,6 @@ Film=0
 #Oben nichts ändern, wird automatisch gesetzt
 #########################################
 
-
-
-# Verzeichnis mit abschliesenden / 
-# z.b. /media/sda1/movies/
-##
-mediaVerzeichnis="%%mediaVerzeichnis%%"
-
-
-
 #  Bei Ja Nein Einstellungen ist 
 #  0 = Ja
 #  1 = Nein

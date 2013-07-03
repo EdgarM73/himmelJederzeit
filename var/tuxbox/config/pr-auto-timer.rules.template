@@ -1,0 +1,44 @@
+# pr-auto-timer.rules
+#
+# ----------------------------------------------------------------------------
+#
+# Syntax: CHANNELNAME;DAYOFWEEK[,TIMESPAN];REGEX[;FLAGS]
+#
+# CHANNELNAME	the channelname e.g. "Das Erste HD" or
+#		a bouquet-nr prefixed with an asterisk e.g. "*1"
+#
+# DAYOFWEEK	the day of week e.g. "Mon" for monday or
+#		an asterisk for all days of week
+#
+# TIMESPAN	defines a period in which the timer must start
+#		e.g. "18:45-20:15" or an asterisk for all times
+#		TIMESPAN is optional; default is "*"
+#
+# REGEX		the name of the show e.g. "Tatort"
+#
+# FLAGS		accept "Z" to creating a zap timer
+#		FLAGS is optional; default is a record timer
+#
+# ----------------------------------------------------------------------------
+#
+## Examples (remove leading # to activate):
+#
+## Record all shows containing the word 'Tatort'
+## on channel 'Das Erste HD' on sundays:
+#Das Erste HD;Sun;Tatort
+
+## Record all shows containing the word 'Tagesschau'
+## on channel 'Das Erste HD' on all days in a timespan between 11:55 and 12:05:
+#Das Erste HD;*,11:55-12:05;Tagesschau
+
+## Record all shows containing the word 'Knollenblätterpilz'
+## on channel 'Das Erste HD':
+#Das Erste HD;*;Knollenblätterpilz
+
+## Record all shows containing the sentence 'Rumpsteak schmeckt lecker'
+## on all channels of bouquet 1:
+#*1;*;Rumpsteak schmeckt lecker
+
+## Zap to all shows containing the word 'Affenhaus'
+## on channel 'Das Erste HD':
+#Das Erste HD;*;Affenhaus;Z

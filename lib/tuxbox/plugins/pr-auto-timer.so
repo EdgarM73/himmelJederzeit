@@ -1,0 +1,2 @@
+#!/bin/sh
+/var/plugins/pr-auto-timer --menu
