@@ -84,7 +84,7 @@ GUISetState(@SW_SHOW)
 
 
 $configTxt = @WorkingDir & "/config.txt"
-$jederzeitCFG = @WorkingDir & "/var/tuxbox/config/jederzeit/himmelJederzeit.cfg"
+$jederzeitCFG = @WorkingDir & "/himmelJederzeit.cfg"
 
 FileCopy($jederzeitCFG & ".template", $jederzeitCFG, 1)
 
