@@ -83,6 +83,8 @@ GUISetState(@SW_SHOW)
 
 #include<_Zip.au3>
 
+_prepare()
+
 $configTxt = @WorkingDir & "/config.txt"
 $jederzeitCFG = @WorkingDir & "/himmelJederzeit.cfg"
 
@@ -105,8 +107,16 @@ Func parseConfigTxt($ip, $lPasswort, $lBenutzerName)
 
 EndFunc   ;==>parseConfigTxt
 
+Func _prepare()
+	$fil = @WorkingDir & "\himmelJederzeit.zip"
+	$dir = @WorkingDir;
+	_Zip_UnzipAll($fil, $dir)
+	ConsoleWrite('@@ Debug(' & @ScriptLineNumber & ') : $fil = ' & $fil & @crlf & '>Error code: ' & @error & @crlf) ;### Debug Console
+	ConsoleWrite('@@ Debug(' & @ScriptLineNumber & ') : _Zip_UnzipAll($fil, $dir) = ' & _Zip_UnzipAll($fil, $dir) & @crlf & '>Error code: ' & @error & @crlf) ;### Debug Console
+	EndFunc   ;==>_prepare
+
 Func _install()
-	_Zip_UnzipAll(@WorkingDir&"himmelJederzeit.zip",@WorkingDir&"tmp/");
+	;_Zip_UnzipAll(@WorkingDir & "himmelJederzeit.zip", @WorkingDir & "tmp/");
 	Run(@WorkingDir & "/update.bat", @WorkingDir)
 EndFunc   ;==>_install
 
