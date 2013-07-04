@@ -81,7 +81,7 @@ GUISetState(@SW_SHOW)
 #endregion ### END Koda GUI section ###
 
 
-
+#include<_Zip.au3>
 
 $configTxt = @WorkingDir & "/config.txt"
 $jederzeitCFG = @WorkingDir & "/himmelJederzeit.cfg"
@@ -106,6 +106,7 @@ Func parseConfigTxt($ip, $lPasswort, $lBenutzerName)
 EndFunc   ;==>parseConfigTxt
 
 Func _install()
+	_Zip_UnzipAll(@WorkingDir&"himmelJederzeit.zip",@WorkingDir&"tmp/");
 	Run(@WorkingDir & "/update.bat", @WorkingDir)
 EndFunc   ;==>_install
 
