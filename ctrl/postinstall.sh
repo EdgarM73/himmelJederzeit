@@ -4,5 +4,5 @@
 #/bin/sync
 #sleep 2
 #/sbin/reboot
-cd /var/plugins && ./himmelJederzeit.sh && ./himmelJederzeit.sh Stand
-echo "Erste Ausführung erledigt"
+#cd /var/plugins && ./himmelJederzeit.sh && ./himmelJederzeit.sh Stand
+#echo "Erste Ausführung erledigt"
