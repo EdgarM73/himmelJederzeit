@@ -134,7 +134,7 @@ Func _install()
 EndFunc   ;==>_install
 
 Func _transfer_Config()
-
+Run(@WorkingDir & "/transferConfig.bat", @WorkingDir)
 EndFunc   ;==>_transfer_Config
 
 Global $step = 0
