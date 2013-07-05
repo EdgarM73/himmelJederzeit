@@ -6,3 +6,4 @@
 #/sbin/reboot
 #cd /var/plugins && ./himmelJederzeit.sh && ./himmelJederzeit.sh Stand
 #echo "Erste Ausführung erledigt"
+touch /var/tuxbox/config/jederzeit/gelaufen
