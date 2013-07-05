@@ -134,7 +134,11 @@ Func _install()
 EndFunc   ;==>_install
 
 Func _transfer_Config()
-Run(@WorkingDir & "/transferConfig.bat", @WorkingDir)
+	GUICtrlSetData($Progress1, 100)
+	Run(@WorkingDir & "/transferConfig.bat", @WorkingDir)
+	GUICtrlSetState($Pic4, $GUI_HIDE)
+	GUICtrlSetState($ConfigPut,$GUI_HIDE)
+	GUICtrlSetState($Edit1,$GUI_SHOW)
 EndFunc   ;==>_transfer_Config
 
 Global $step = 0
@@ -175,6 +179,14 @@ $lStartStunde = "20"
 $lStartMinute = "00"
 $lEndStunde = "22"
 $lEndMinute = "30"
+
+$img = @WorkingDir & "\schritt1.jpg"
+
+;SplashImageOn("himmelJEderzeit Installation","C:\entwicklung\himmelJederzeit\setup\img\image.jpg",-1,-1)
+SplashTextOn("himmel Jederzeit Installation", "Willkommen bei der Installation von himmelJederzeit für das NG-RETURN Image. "&@LF & @LF &" Bitte beachten, das ist immer noch eine Beta Version ", -1, -1)
+Sleep(3000)
+SplashOff()
+
 While 1
 	$nMsg = GUIGetMsg()
 	Switch $nMsg
@@ -291,12 +303,7 @@ WEnd
 
 
 
-#cs splash screen
-	$img = @ScriptDir & "\FILE.jpg"
-	$splashGUI = GUICreate("", 500, 375, Default, Default, $WS_POPUPWINDOW)
-	$splashPIC = GUICtrlCreatePic($img, 0, 0, 500, 375)
-	GUICtrlSetState($splashPIC, $GUI_DISABLE)
-#ce
+
 
 
 

@@ -630,5 +630,33 @@
 			</properties>
 			<components/>
 		</object>
+		<object type="TAEdit" name="Edit1">
+			<properties>
+				<property name="Left" vt="Int16">240</property>
+				<property name="Top" vt="Int16">408</property>
+				<property name="Width" vt="Int16">665</property>
+				<property name="Height" vt="Int16">289</property>
+				<property name="Enabled" vt="False">False</property>
+				<property name="Lines.Strings" vt="List">
+					<list>
+						<li vt="UTF8String">Die Installation ist fertig, himmelJederzeit ist nun lauffähig.</li>
+						<li vt="String"/>
+						<li vt="UTF8String">ein bis zweimal pro Woche kann man über &quot;blaue Taste&quot;-&gt;Scripte-&gt;himmelJederzeit die Datei erneuern.</li>
+						<li vt="String"/>
+						<li vt="UTF8String">AutoTimer wird jedes Mal, wenn es läuft, am Besten nachts, die Konfiguration des Scriptes lesen und Timer suchen und setzen.</li>
+						<li vt="String"/>
+						<li vt="String">Feedback bitte im coolstream Forum</li>
+						<li vt="String">http://www.coolstream.to/index.php?page=Thread&amp;postID=138303#post138303</li>
+						<li vt="String"/>
+					</list>
+				</property>
+				<property name="TabOrder" vt="Int8">12</property>
+				<property name="Visible" vt="False">False</property>
+				<property name="CtrlStyle" vt="Int32">1345523908</property>
+				<property name="CtrlExStyle" vt="Int16">512</property>
+				<property name="Resizing" vt="Set"/>
+			</properties>
+			<components/>
+		</object>
 	</components>
 </object>

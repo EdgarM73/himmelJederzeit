@@ -61,6 +61,11 @@ $Pic4 = GUICtrlCreatePic(@WorkingDir&"\schritt4.jpg", 232, 408, 708, 316)
 GUICtrlSetState(-1, $GUI_HIDE)
 $ConfigPut = GUICtrlCreateButton("Konfiguration übertragen", 728, 352, 131, 41)
 GUICtrlSetState(-1, $GUI_HIDE)
+
+$Edit1 = GUICtrlCreateEdit("", 240, 408, 665, 289)
+GUICtrlSetData(-1, StringFormat("Die Installation ist fertig, himmelJederzeit ist nun lauffähig.\r\n\r\nein bis zweimal pro Woche kann man über "&Chr(34)&"blaue Taste"&Chr(34)&"->Scripte->himmelJederzeit die Datei erneuern.\r\n\r\nAutoTimer wird jedes Mal, wenn es läuft, am Besten nachts, die Konfiguration des Scriptes lesen und Timer suchen und setzen.\r\n\r\nFeedback bitte im coolstream Forum\r\nhttp://www.coolstream.to/index.php?page=Thread&postID=138303#post138303\r\n"))
+GUICtrlSetState(-1, $GUI_DISABLE)
+GUICtrlSetState(-1,$GUI_HIDE)
 GUISetState(@SW_SHOW)
 #EndRegion ### END Koda GUI section ###
 
