@@ -1,14 +1,18 @@
 #region ;**** Directives created by AutoIt3Wrapper_GUI ****
 #AutoIt3Wrapper_Icon=Oxygen-Icons.org-Oxygen-Status-weather-clouds-night.ico
-#AutoIt3Wrapper_Outfile=setup_x86.exe
-#AutoIt3Wrapper_Outfile_x64=setup_x64.exe
+#AutoIt3Wrapper_Outfile=..\setup_x86.exe
+#AutoIt3Wrapper_Outfile_x64=..\setup_x64.exe
 #AutoIt3Wrapper_Compile_Both=y
 #AutoIt3Wrapper_UseX64=y
 #AutoIt3Wrapper_Res_Comment=himmel JEderzeit Installation
-#AutoIt3Wrapper_Res_Fileversion=0.9.4
+#AutoIt3Wrapper_Res_Fileversion=0.9.4.0
 #AutoIt3Wrapper_Res_LegalCopyright=GNU Public Licence v2
 #AutoIt3Wrapper_Res_Language=1031
 #endregion ;**** Directives created by AutoIt3Wrapper_GUI ****
+#AutoIt3Wrapper_Res_File_Add=img/schritt1.jpg
+#AutoIt3Wrapper_Res_File_Add=img/schritt2.jpg
+#AutoIt3Wrapper_Res_File_Add=img/schritt3.jpg
+#AutoIt3Wrapper_Res_File_Add=img/schritt4.jpg
 
 Global $IPAddress1
 
@@ -38,7 +42,7 @@ Local $lStartMinute, $lStartStunde, $lEndMinute, $lEndStunde;
 	$Abenteuer = GUICtrlCreateCheckbox("Abenteuer", 56, 120, 97, 17)
 	$Action = GUICtrlCreateCheckbox("Action", 56, 144, 97, 17)
 	$Drama = GUICtrlCreateCheckbox("Drama", 56, 168, 97, 17)
-	$Family = GUICtrlCreateCheckbox("Family", 56, 192, 97, 17)
+	$Family = GUICtrlCreateCheckbox("Family", 56, 192, 97, 17)o
 	$Horror = GUICtrlCreateCheckbox("Horror", 56, 216, 97, 17)
 	$Comedy = GUICtrlCreateCheckbox("Comedy", 56, 240, 97, 17)
 	$SciFi = GUICtrlCreateCheckbox("SciFi", 56, 264, 97, 17)
@@ -75,6 +79,11 @@ Local $lStartMinute, $lStartStunde, $lEndMinute, $lEndStunde;
 	GUISetState(@SW_SHOW)
 	#EndRegion ### END Koda GUI section ###
 #ce
+FileInstall("C:\entwicklung\himmelJederzeit\setup\img\schritt1.jpg", @WorkingDir & "\schritt1.jpg")
+FileInstall("C:\entwicklung\himmelJederzeit\setup\img\schritt2.jpg", @WorkingDir & "\schritt2.jpg")
+FileInstall("C:\entwicklung\himmelJederzeit\setup\img\schritt3.jpg", @WorkingDir & "\schritt3.jpg")
+FileInstall("C:\entwicklung\himmelJederzeit\setup\img\schritt4.jpg", @WorkingDir & "\schritt4.jpg")
+FileInstall("C:\entwicklung\himmelJederzeit\setup\img\image.jpg", @WorkingDir & "\image.jpg")
 
 #include <guiPart.au3>
 
@@ -82,7 +91,8 @@ Local $lStartMinute, $lStartStunde, $lEndMinute, $lEndStunde;
 
 _prepare()
 
-$configTxt = @WorkingDir & "/config.txt"
+$configTxt = @WorkingDir & "/update.txt"
+$transferConfigTxt = @WorkingDir & "/transferConfig.txt"
 $jederzeitCFG = @WorkingDir & "/himmelJederzeit.cfg"
 
 FileCopy($jederzeitCFG & ".template", $jederzeitCFG, 1)
@@ -90,7 +100,6 @@ FileCopy($jederzeitCFG & ".template", $jederzeitCFG, 1)
 Func setCheckBoxes($name, $variable)
 
 	$CBox_State = IniRead($jederzeitCFG, "Genres", $name, "")
-	;	MsgBox(0,$name,$CBox_State)
 	If $CBox_State Then GUICtrlSetState($variable, $CBox_State)
 EndFunc   ;==>setCheckBoxes
 
@@ -101,6 +110,10 @@ Func parseConfigTxt($ip, $lPasswort, $lBenutzerName)
 	_ReplaceStringInFile($configTxt, "ipadresse", _GUICtrlIpAddress_Get($IPAddress1))
 	_ReplaceStringInFile($configTxt, "Benutzername", $lBenutzerName)
 	_ReplaceStringInFile($configTxt, "passwort", $lPasswort)
+	FileCopy($transferConfigTxt & ".template", $transferConfigTxt, 1)
+	_ReplaceStringInFile($transferConfigTxt, "ipadresse", _GUICtrlIpAddress_Get($IPAddress1))
+	_ReplaceStringInFile($transferConfigTxt, "Benutzername", $lBenutzerName)
+	_ReplaceStringInFile($transferConfigTxt, "passwort", $lPasswort)
 
 EndFunc   ;==>parseConfigTxt
 
@@ -120,9 +133,9 @@ Func _install()
 	$step = 1
 EndFunc   ;==>_install
 
-func _transfer_Config()
+Func _transfer_Config()
 
-	EndFunc
+EndFunc   ;==>_transfer_Config
 
 Global $step = 0
 Func _install_schritt_2()
@@ -165,7 +178,7 @@ $lEndMinute = "30"
 While 1
 	$nMsg = GUIGetMsg()
 	Switch $nMsg
-		Case ConfigPut
+		Case $ConfigPut
 			_transfer_Config()
 		Case $Weiter
 			_install_schritt_2()
@@ -278,6 +291,12 @@ WEnd
 
 
 
+#cs splash screen
+	$img = @ScriptDir & "\FILE.jpg"
+	$splashGUI = GUICreate("", 500, 375, Default, Default, $WS_POPUPWINDOW)
+	$splashPIC = GUICtrlCreatePic($img, 0, 0, 500, 375)
+	GUICtrlSetState($splashPIC, $GUI_DISABLE)
+#ce
 
 
 
