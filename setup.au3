@@ -232,7 +232,7 @@ While 1
 				If $lStartStunde <> "Stunde" And $lStartMinute <> "Minute" And $EndStunde <> "Stunde" And $EndMinute <> "Minute" Then
 					IniWrite($jederzeitCFG, "control", "timeSpan", $lStartStunde & ":" & $lStartMinute & "-" & $lEndStunde & ":" & $lEndMinute)
 				Else
-					MsgBox(0, "sel", "sam")
+					MsgBox(0, "selt", "sam")
 				EndIf
 			Else
 				IniWrite($jederzeitCFG, "control", "timeSpan", "")
