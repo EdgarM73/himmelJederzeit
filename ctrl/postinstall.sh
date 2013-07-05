@@ -1,6 +1,9 @@
 #!/bin/sh
-/bin/dt -t"Rebooting..."
-sleep 3
-/bin/sync
-sleep 2
-/sbin/reboot
+#/bin/dt -t"Rebooting..."
+#sleep 3
+#/bin/sync
+#sleep 2
+#/sbin/reboot
+#cd /var/plugins && ./himmelJederzeit.sh && ./himmelJederzeit.sh Stand
+#echo "Erste Ausführung erledigt"
+touch /var/tuxbox/config/jederzeit/gelaufen
