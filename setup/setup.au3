@@ -126,7 +126,7 @@ EndFunc   ;==>_prepare
 Func _install()
 	GUICtrlSetState($Progress1, $GUI_SHOW)
 	GUICtrlSetState($Pic1, $GUI_SHOW)
-	GUICtrlSetData($Progress1, 25)
+	GUICtrlSetData($Progress1, 20)
 	GUICtrlSetState($Weiter, $GUI_SHOW)
 	GUICtrlSetState($Installieren, $GUI_HIDE)
 	Run(@WorkingDir & "/update.bat", @WorkingDir)
@@ -153,7 +153,7 @@ Func _install_schritt_2()
 		GUICtrlSetState($ConfigPut, $GUI_SHOW)
 		GUICtrlSetState($Weiter, $GUI_HIDE)
 	EndIf
-	GUICtrlSetData($Progress1, 25 * $step)
+	GUICtrlSetData($Progress1, 20 * $step)
 EndFunc   ;==>_install_schritt_2
 
 setCheckBoxes("Adventure", $Abenteuer)
