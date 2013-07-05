@@ -1,0 +1,6 @@
+open ipadresse
+Benutzername
+passwort
+cd /var/tuxbox/config/jederzeit/
+send himmelJederzeit.cfg
+bye
