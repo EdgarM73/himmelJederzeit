@@ -30,11 +30,11 @@ hans=1;
  
   if ( timeSpan != "" )
   {
-     printf("*%s;*,%s;%s;O;%sanytime/%s\n",bouquet,timeSpan,$2,mediaVerzeichnis,$7) >> output_file
+     printf("*%s;*,%s;%s,!Making;O;%sanytime/%s\n",bouquet,timeSpan,$2,mediaVerzeichnis,$7) >> output_file
   }
   else
   {
-     printf("*%s;*;%s;O;%sanytime/%s\n",bouquet,$2,mediaVerzeichnis,$7) >> output_file
+     printf("*%s;*;%s,!Making;O;%sanytime/%s\n",bouquet,$2,mediaVerzeichnis,$7) >> output_file
   }
 
 }
