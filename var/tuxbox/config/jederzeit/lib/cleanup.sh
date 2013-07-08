@@ -34,12 +34,12 @@ removeAlreadyTimedEntries () {
 		string=`echo $do | sed -e 's/(/ /g'`
 		grep -v "${string}" ${filmFile} > ${tmp_file}
 		mv ${tmp_file} ${filmFile}
-		echo "<br><div>"${string}"</div>" >> ${mediaVerzeichnis}"done.html"
+		echo "<br><div>"${string}"</div>" >> ${mediaVerzeichnis}"/done.html"
 		log "Filme aufgenommen:" ${string}
-		if [[ $2 == "GUI" ]]
-		then
-			echo $string
-		fi
+		#if [[ $2 == "GUI" ]]
+		#then
+		#	echo $string
+		#fi
 	done
 }
 

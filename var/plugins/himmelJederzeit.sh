@@ -56,6 +56,7 @@ anytime=$jederzeitdir"anytime"
 filmFile=${output}${FilmName}
 filmFilePrevious=${output}${FilmName}".orig"
 filmStatusFile=${output}${FilmStatusName}
+existingMoviesFile=${tmp}"existingMovies"
 serienFile=${output}${SerienName} 
 weltFile=${output}${WeltName}
 
@@ -73,7 +74,7 @@ source ${lib}unwanted.sh
 
 source ${lib}init.sh
 source ${lib}main.sh
-
+source ${lib}getExistingMovies.sh
 
 # cleanup all files not needed for deployement
 
@@ -85,6 +86,8 @@ fi
 
 source ${jederzeitdir}himmelJederzeit.cfg
 getMediaDirectory
+
+getExistingMovies
 
 
 log() {

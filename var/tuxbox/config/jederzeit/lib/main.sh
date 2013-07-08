@@ -3,6 +3,7 @@
 
 getMediaDirectory() {
 	mediaVerzeichnis=`grep "network_nfs_recordingdir" /var/tuxbox/config/neutrino.conf | cut -d"=" -f2`
+			if [ `grep media ${mediaVerzeichnis}` ]
 }
 
 awkInfos() {
@@ -29,6 +30,15 @@ awkInfos() {
 	log "file should be now optimized "
 	mv ${tmp_file} ${filmFile}
 
+	all_movies_already_saved=$existingMoviesFile
+	
+	for do in $all_movies_already_saved
+	do
+		grep -v "$do" ${filmFile} > {tmp_file} 
+		mv ${tmp_file} ${filmFile}
+		log "remove all movies from rules file already in /media/sdX1/movies"
+	done
+			
 	echo -en "\n\n...bin jederzeit bereit..."
 	log "Anzahl : " `wc -l Filme`
  	# echo "Anzahl : " `wc -l Serien` >> $log
