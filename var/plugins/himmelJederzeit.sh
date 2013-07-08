@@ -89,6 +89,8 @@ getMediaDirectory
 
 getExistingMovies
 
+if [ $mediaVerzeichnis]
+
 
 log() {
 	#Log message to log file
