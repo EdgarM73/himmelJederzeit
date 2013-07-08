@@ -89,7 +89,6 @@ getMediaDirectory
 
 getExistingMovies
 
-if [ $mediaVerzeichnis]
 
 
 log() {
