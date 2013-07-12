@@ -1,7 +1,4 @@
 #!/bin/sh
 touch /var/tuxbox/config/jederzeit/gelaufen
-/bin/dt -t"Rebooting..."
-sleep 3
-/bin/sync
-sleep 2
-/sbin/reboot
+wget -q -O - "http://localhost/control/message?popup=himmelJEderzeit%20wurde%20installiert."
+wget -q -O - "http://localhost/control/reloadplugins"

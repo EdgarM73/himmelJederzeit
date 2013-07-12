@@ -90,7 +90,6 @@ getMediaDirectory
 getExistingMovies
 
 
-
 log() {
 	#Log message to log file
 	#$*: Log message
