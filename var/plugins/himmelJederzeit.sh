@@ -34,7 +34,9 @@
 #	-added new pictures to installation
 #	-added new Text for installation
 #	-removed reboot after installation as not needed
-#	
+#	-removed wrong entries after installation in cfg file, added comment tag
+#	-created two files while runtime 1: all movies on disk 2: all already found entries in Filme.sorted by autotimer ...
+#   ...( regardless if really saved or not)
 #
 # 0.9 beta3
 #	-added installation Script"
