@@ -14,7 +14,7 @@ getExistingMovies()
 			gsub("</epgtitle>","");
 			gsub("\t","");
 
-			print $0;
+			print "\"" $0 "\"";
 			}
 		' >> $existingMoviesFile
 

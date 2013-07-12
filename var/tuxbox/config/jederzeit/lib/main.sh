@@ -29,11 +29,12 @@ awkInfos() {
 	log "file should be now optimized "
 	mv ${tmp_file} ${filmFile}
 
-	all_movies_already_saved=$existingMoviesFile
-	
-	for do in $all_movies_already_saved
-	do
-		grep -v "$do" ${filmFile} > {tmp_file} 
+		
+	for do in `cut -d")" -f1 ${existingMoviesFile} | sed -e 's/ /(/g'`           
+	do                                                                           
+		string=`echo $do | sed -e 's/(/ /g'`                                 
+		echo -en "\ngrebbe:"$string"\n"                                      
+		grep -v "${string}" ${filmFile} > ${tmp_file} 
 		mv ${tmp_file} ${filmFile}
 		log "remove all movies from rules file already in /media/sdX1/movies"
 	done

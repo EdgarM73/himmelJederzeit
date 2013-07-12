@@ -56,7 +56,6 @@ anytime=$jederzeitdir"anytime"
 filmFile=${output}${FilmName}
 filmFilePrevious=${output}${FilmName}".orig"
 filmStatusFile=${output}${FilmStatusName}
-existingMoviesFile=${tmp}"existingMovies"
 serienFile=${output}${SerienName} 
 weltFile=${output}${WeltName}
 
@@ -87,6 +86,7 @@ fi
 source ${jederzeitdir}himmelJederzeit.cfg
 getMediaDirectory
 
+existingMoviesFile=${mediaVerzeichnis}"existingMovies"
 getExistingMovies
 
 
