@@ -28,6 +28,14 @@
 
 # Changelog:
 #
+# 1.0RC1
+#	-added method to remove all movies stored on the hdd already to be timed again
+#	-added proper target directory
+#	-added new pictures to installation
+#	-added new Text for installation
+#	-removed reboot after installation as not needed
+#	
+#
 # 0.9 beta3
 #	-added installation Script"
 #	-added Neutrino Plugin for init and for runtime
@@ -81,7 +89,13 @@ if [ ! -f ${jederzeitdir}himmelJederzeit.cfg ]
 then
 	cp ${jederzeitdir}himmelJederzeit.cfg.template ${jederzeitdir}himmelJederzeit.cfg		
 fi
-
+removeWrongEntriesFromConfigFile() {
+	grep -v "[" ${jederzeitdir}himmelJederzeit.cfg > ${tmp_file}
+	mv ${tmp_file} ${jederzeitdir}himmelJederzeit.cfg
+	
+}
+	
+removeWrongEntriesFromConfigFile
 
 source ${jederzeitdir}himmelJederzeit.cfg
 getMediaDirectory
