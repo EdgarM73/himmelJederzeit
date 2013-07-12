@@ -92,7 +92,7 @@ then
 	cp ${jederzeitdir}himmelJederzeit.cfg.template ${jederzeitdir}himmelJederzeit.cfg		
 fi
 removeWrongEntriesFromConfigFile() {
-	grep -v "[" ${jederzeitdir}himmelJederzeit.cfg > ${tmp_file}
+	grep -v "\[" ${jederzeitdir}himmelJederzeit.cfg > ${tmp_file}
 	mv ${tmp_file} ${jederzeitdir}himmelJederzeit.cfg
 	
 }
