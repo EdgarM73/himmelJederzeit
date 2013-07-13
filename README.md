@@ -18,7 +18,7 @@ Features neccessary :
       - DONE make it configurable which kind of records shall be startet ( like Kids, Thriller, Docu ... )
       - ALMOST taking care that a record is only done once
       - DONE adding a plugin for menu
-      - ALMOST automatic install
+      - DONE automatic install
       
 Features nice to have:
 
