@@ -17,14 +17,6 @@ cleanUp () {
 		fi
 	done
   
-#	for do in $dirs
-#	do
-#		log "testing $do"
-#		if [ -d $do ]; then
-#			log "deleting" "$do"
-#			rmdir $do
-#		fi
-#	done
 }
 
 removeAlreadyTimedEntries () {
@@ -36,10 +28,7 @@ removeAlreadyTimedEntries () {
 		mv ${tmp_file} ${filmFile}
 		echo "<br><div>"${string}"</div>" >> ${mediaVerzeichnis}"/done.html"
 		log "Filme aufgenommen:" ${string}
-		#if [[ $2 == "GUI" ]]
-		#then
-		#	echo $string
-		#fi
+		
 	done
 }
 

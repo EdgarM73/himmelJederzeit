@@ -11,7 +11,7 @@ hans=1;
   {
     $7 = "Comedy";
   }
-  if ( substr($7,0,6) == "Sci-Fi") 
+  if ( substr($7,0,6) == "Sci-Fi" || substr($7,0,5) == "SciFi" ) 
   {
     $7 = "SciFi";
   }
@@ -32,7 +32,7 @@ hans=1;
   {
      printf("*%s;*,%s;%s,!Making;O;%sanytime/%s\n",bouquet,timeSpan,$2,mediaVerzeichnis,$7) >> output_file
   }
-  else
+  else if ( NF > 0 )
   {
      printf("*%s;*;%s,!Making;O;%sanytime/%s\n",bouquet,$2,mediaVerzeichnis,$7) >> output_file
   }
