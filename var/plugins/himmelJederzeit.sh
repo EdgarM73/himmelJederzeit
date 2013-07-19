@@ -73,6 +73,14 @@ lib=$jederzeitdir"lib/"
 tmp_file=${tmp}"tmp_file"
 wgetDirectory=${tmp}"wget/"
 
+log() {
+	#Log message to log file
+	#$*: Log message
+	if [ "$log" != "" ]; then
+		echo -e $(date +'%F %H:%M:%S') [$$]: "$*" >> $log
+	fi
+}
+
 
 source ${lib}sky.sh
 source ${lib}bouquet.sh
@@ -102,17 +110,11 @@ removeWrongEntriesFromConfigFile
 source ${jederzeitdir}himmelJederzeit.cfg
 getMediaDirectory
 
-existingMoviesFile=${mediaVerzeichnis}"existingMovies"
+existingMoviesFile=${mediaVerzeichnis}"/existingMovies"
+allXMLFiles=${mediaVerzeichnis}"/myFile"
 getExistingMovies
+rm $allXMLFiles
 
-
-log() {
-	#Log message to log file
-	#$*: Log message
-	if [ "$log" != "" ]; then
-		echo -e $(date +'%F %H:%M:%S') [$$]: "$*" >> $log
-	fi
-}
 
 
 
