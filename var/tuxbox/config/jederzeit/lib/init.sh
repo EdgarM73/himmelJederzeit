@@ -29,8 +29,11 @@ initGUI() {
 		echo -e "\tSky Cinema HD"
 		echo -e "\tSky Action HD"
 		echo -e "\tSky Hits HD"
+		echo -e "\tSky Emotion"
+		echo -e "\tSky Emotion"
 		echo -e "\tDisney Channel HD"
 		echo -e "\tDisney Cinemagic HD"
+		echo -e "\tMGM HD"
 		echo
 		echo
 	
