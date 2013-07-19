@@ -1,3 +1,4 @@
+#!/bin/sh
 # Copyright (C) 2013-2013  Erdal Akkaya, erdal@akkaya.info
 #
 #
@@ -109,9 +110,14 @@ removeWrongEntriesFromConfigFile
 
 source ${jederzeitdir}himmelJederzeit.cfg
 getMediaDirectory
+length=`echo ${#mediaVerzeichnis}`
+last_string=`echo $mediaVerzeichnis | cut -c${length}`
+if [[ $last_string -ne "/" ]];then
+	mediaVerzeichnis=${mediaVerzeichnis}"/"
+fi
 
-existingMoviesFile=${mediaVerzeichnis}"/existingMovies"
-allXMLFiles=${mediaVerzeichnis}"/myFile"
+existingMoviesFile=${mediaVerzeichnis}"existingMovies"
+allXMLFiles=${mediaVerzeichnis}"myFile"
 getExistingMovies
 rm $allXMLFiles
 
