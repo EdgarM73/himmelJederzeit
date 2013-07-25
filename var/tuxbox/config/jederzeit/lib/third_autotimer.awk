@@ -28,15 +28,18 @@ hans=1;
     $7 = "Family";
   }
  
-  if ( timeSpan != "" )
-  {
-     printf("*%s;*,%s;%s,!Making;O;%sanytime/%s\n",bouquet,timeSpan,$2,mediaVerzeichnis,$7) >> output_file
+ if ( length($2) > 0 )
+ {
+	if ( timeSpan != "" )
+  	{
+    	printf("*%s;*,%s;%s,!Making;O;%sanytime/%s\n",bouquet,timeSpan,$2,mediaVerzeichnis,$7) >> output_file
+  	}
+  	else if ( NF > 0 )
+  	{
+     	printf("*%s;*;%s,!Making;O;%sanytime/%s\n",bouquet,$2,mediaVerzeichnis,$7) >> output_file
+  	}
+	printf("%s;%s;%sanytime/%s\n",$2,$6,mediaVerzeichnis,$7) >> deletionFile
   }
-  else if ( NF > 0 )
-  {
-     printf("*%s;*;%s,!Making;O;%sanytime/%s\n",bouquet,$2,mediaVerzeichnis,$7) >> output_file
-  }
-printf("%s;%s;%sanytime/%s\n",$2,$6,mediaVerzeichnis,$7) >> deletionFile
 }
 END {
 print ausgabe;
