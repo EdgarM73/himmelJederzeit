@@ -25,7 +25,7 @@ awkInfos() {
 
 
 	echo -en "\n\n...bereite das Fleisch vor..."
-	awk -v timeSpan=$timeSpan -v output_file=${tmp_file} -v bouquet=$bouquetId -v logfile=$log -v mediaVerzeichnis=$mediaVerzeichnis -f $lib/third_autotimer.awk ${filmFile} >> $log
+awk -v timeSpan=$timeSpan -v output_file=${tmp_file} -v deletionFile=${filmDeletionFile} -v bouquet=$bouquetId -v logfile=$log -v mediaVerzeichnis=$mediaVerzeichnis -f $lib/third_autotimer.awk ${filmFile} >> $log
 	log "file should be now optimized "
 	mv ${tmp_file} ${filmFile}
 

@@ -65,6 +65,7 @@ tmp=${jederzeitdir}"tmp/"
 anytime=$jederzeitdir"anytime"
 
 filmFile=${output}${FilmName}
+filmDeletionFile=${output}"deletionFilmFile"
 filmFilePrevious=${output}${FilmName}".orig"
 filmStatusFile=${output}${FilmStatusName}
 serienFile=${output}${SerienName} 
@@ -112,7 +113,7 @@ source ${jederzeitdir}himmelJederzeit.cfg
 getMediaDirectory
 length=`echo ${#mediaVerzeichnis}`
 last_string=`echo $mediaVerzeichnis | cut -c${length}`
-if [[ $last_string -ne "/" ]];then
+if [[ $last_string == "/" ]];then
 	mediaVerzeichnis=${mediaVerzeichnis}"/"
 fi
 
