@@ -38,7 +38,14 @@ hans=1;
   	{
      	printf("*%s;*;%s,!Making;O;%sanytime/%s\n",bouquet,$2,mediaVerzeichnis,$7) >> output_file
   	}
-	printf("%s;%s;%sanytime/%s\n",$2,$6,mediaVerzeichnis,$7) >> deletionFile
+  	if ( length($6) > 0 )
+  	{
+		printf("%s|%s|%sanytime/%s\n",$2,$6,mediaVerzeichnis,$7) >> deletionFile
+	}
+	else
+	{
+		printf("no deletiondate delivered %s\n",$2);
+	}
   }
 }
 END {

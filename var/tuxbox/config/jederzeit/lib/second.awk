@@ -13,7 +13,7 @@ BEGIN {
     print $0 > welt;
     next;
 }
-// {
+/Film/ {
 	print $0 > film;
 	next;
 }
