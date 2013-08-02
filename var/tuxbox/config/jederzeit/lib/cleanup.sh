@@ -41,3 +41,7 @@ Stand () {
 }
 
 
+
+deleteFiles() {
+			deleteMovies	
+}

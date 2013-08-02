@@ -66,6 +66,7 @@ anytime=$jederzeitdir"anytime"
 
 filmFile=${output}${FilmName}
 filmDeletionFile=${output}"deletionFilmFile"
+deletionExecutionFile=${output}"executeDeletion.sh"
 filmFilePrevious=${output}${FilmName}".orig"
 filmStatusFile=${output}${FilmStatusName}
 serienFile=${output}${SerienName} 
@@ -137,6 +138,9 @@ case $1 in
 	;;
 	"connect" )
 		getHTML
+	;;
+	"deleteFiles" )
+		deleteFiles
 	;;
 	"full" )
 		getHimmelJederzeitBouquet
