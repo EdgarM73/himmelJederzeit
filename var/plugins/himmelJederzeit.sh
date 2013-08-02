@@ -143,7 +143,6 @@ case $1 in
 	#	echo "existingMoviesFile="$existingMoviesFile
 	#echo "deletionExecutionFile="$deletionExecutionFile
 	#echo "filmDeletionFile="$filmDeletionFile
-	
 		deleteFiles
 	;;
 	"full" )

@@ -7,7 +7,7 @@ cleanUp () {
 		cp $filmFile ${filmFilePrevious}
 	fi
 	
-	files="${tmp}1 ${tmp}Filme ${tmp}Welt ${tmp}Serien ${filmFile}  ${serienFile} ${weltFile} ${filmDeletionFile}"
+	files="${tmp}1 ${tmp}Filme ${tmp}Welt ${tmp}Serien ${filmFile} ${deletionExecutionFile}  ${serienFile} ${weltFile} ${filmDeletionFile}"
 	dirs="${wgetDirectory} ${tmp}"
 	
 	for do in $files
