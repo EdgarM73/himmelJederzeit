@@ -65,8 +65,8 @@ tmp=${jederzeitdir}"tmp/"
 anytime=$jederzeitdir"anytime"
 
 filmFile=${output}${FilmName}
-filmDeletionFile=${output}"deletionFilmFile"
-deletionExecutionFile=${output}"executeDeletion.sh"
+export filmDeletionFile=${output}"deletionFilmFile"
+export deletionExecutionFile=${output}"executeDeletion.sh"
 filmFilePrevious=${output}${FilmName}".orig"
 filmStatusFile=${output}${FilmStatusName}
 serienFile=${output}${SerienName} 
@@ -114,12 +114,12 @@ source ${jederzeitdir}himmelJederzeit.cfg
 getMediaDirectory
 length=`echo ${#mediaVerzeichnis}`
 last_string=`echo $mediaVerzeichnis | cut -c${length}`
-if [[ $last_string == "/" ]];then
+if [[ $last_string != "/" ]];then
 	mediaVerzeichnis=${mediaVerzeichnis}"/"
 fi
 
-existingMoviesFile=${mediaVerzeichnis}"existingMovies"
-allXMLFiles=${mediaVerzeichnis}"myFile"
+export existingMoviesFile=${mediaVerzeichnis}"existingMovies"
+export allXMLFiles=${mediaVerzeichnis}"myFile"
 getExistingMovies
 rm $allXMLFiles
 
@@ -140,6 +140,10 @@ case $1 in
 		getHTML
 	;;
 	"deleteFiles" )
+	echo "existingMoviesFile="$existingMoviesFile
+	echo "deletionExecutionFile="$deletionExecutionFile
+	echo "filmDeletionFile="$filmDeletionFile
+	
 		deleteFiles
 	;;
 	"full" )
