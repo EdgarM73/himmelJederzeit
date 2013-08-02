@@ -140,9 +140,9 @@ case $1 in
 		getHTML
 	;;
 	"deleteFiles" )
-	echo "existingMoviesFile="$existingMoviesFile
-	echo "deletionExecutionFile="$deletionExecutionFile
-	echo "filmDeletionFile="$filmDeletionFile
+	#	echo "existingMoviesFile="$existingMoviesFile
+	#echo "deletionExecutionFile="$deletionExecutionFile
+	#echo "filmDeletionFile="$filmDeletionFile
 	
 		deleteFiles
 	;;
